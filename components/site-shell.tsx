@@ -21,49 +21,48 @@ export function Logo() {
   );
 }
 
-export function EmergencyBar() {
-  return (
-    <div className="emergency-bar" role="region" aria-label="Emergency services">
-      <div className="container emergency-bar__inner">
-        <span className="emergency-bar__label">
-          <Siren size={16} aria-hidden="true" /> Emergency services available
-        </span>
-        <span className="emergency-bar__phones">
-          {site.phones.map((phone, index) => (
-            <a href={`tel:${phonesE164[index]}`} key={phone}>
-              <Phone size={13} aria-hidden="true" /> {phone}
-            </a>
-          ))}
-        </span>
-      </div>
-    </div>
-  );
+function EmergencyPulse() {
+  return <span className="emergency-pulse" aria-hidden="true" />;
 }
 
 export function EmergencyCallout() {
   return (
     <section className="emergency-callout" aria-labelledby="emergency-title">
-      <div className="container emergency-callout__grid">
-        <div>
-          <span className="emergency-callout__badge">
-            <Siren size={18} aria-hidden="true" /> Emergency
-          </span>
-          <h2 id="emergency-title">We provide emergency services.</h2>
-          <p>
-            For urgent medical problems, call the clinic straight away so our
-            team can prepare for your arrival.
-          </p>
-        </div>
-        <div className="emergency-callout__phones">
-          {site.phones.map((phone, index) => (
-            <a href={`tel:${phonesE164[index]}`} key={phone}>
-              <Phone size={22} aria-hidden="true" />
-              <span>
-                <small>Emergency call</small>
-                {phone}
+      <div className="container">
+        <div className="emergency-card">
+          <div className="emergency-card__intro">
+            <span className="emergency-card__icon" aria-hidden="true">
+              <Siren size={26} />
+            </span>
+            <div>
+              <span className="kicker kicker--light emergency-card__kicker">
+                <EmergencyPulse /> Emergency services
               </span>
-            </a>
-          ))}
+              <h2 id="emergency-title">Urgent care when it matters most.</h2>
+              <p>
+                Himal Health Clinic provides emergency services. Call ahead so
+                our team can prepare for your arrival.
+              </p>
+            </div>
+          </div>
+          <div className="emergency-card__phones">
+            {site.phones.map((phone, index) => (
+              <a href={`tel:${phonesE164[index]}`} key={phone}>
+                <span className="emergency-card__phone-icon" aria-hidden="true">
+                  <Phone size={19} />
+                </span>
+                <span className="emergency-card__phone-text">
+                  <small>Emergency line {index + 1}</small>
+                  {phone}
+                </span>
+                <ArrowUpRight
+                  className="emergency-card__arrow"
+                  size={18}
+                  aria-hidden="true"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -73,13 +72,40 @@ export function EmergencyCallout() {
 export function SiteHeader() {
   return (
     <>
-      <EmergencyBar />
       <div className="location-bar">
         <div className="container location-bar__inner">
-          <span>
-            <MapPin size={14} /> {site.location}
-          </span>
-          <span>{site.nearby}</span>
+          <div className="location-bar__emergency">
+            <span className="location-bar__emergency-label">
+              <EmergencyPulse /> Emergency
+            </span>
+            <span className="location-bar__phones">
+              {site.phones.map((phone, index) => (
+                <a href={`tel:${phonesE164[index]}`} key={phone}>
+                  {phone}
+                </a>
+              ))}
+            </span>
+          </div>
+          <a
+            className="location-bar__place"
+            href={site.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MapPin size={15} aria-hidden="true" />
+            <span>
+              {site.location}
+              <span className="location-bar__nearby">
+                {" "}
+                · {site.nearby}
+              </span>
+            </span>
+            <ArrowUpRight
+              className="location-bar__arrow"
+              size={14}
+              aria-hidden="true"
+            />
+          </a>
         </div>
       </div>
       <header className="site-header">
@@ -147,7 +173,7 @@ export function SiteFooter() {
         </a>
       </div>
       <a className="mobile-cta" href={`tel:${phonesE164[0]}`}>
-        <Siren size={18} /> Emergency · Call {site.phones[0]}
+        <EmergencyPulse /> Emergency · Call {site.phones[0]}
       </a>
     </footer>
   );

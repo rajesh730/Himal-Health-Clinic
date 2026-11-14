@@ -6,8 +6,8 @@
   --paper: #fbfcfe;
   --white: #ffffff;
   --line: #c8d8e8;
-  --emergency: #b42318;
-  --emergency-deep: #8f1c13;
+  --emergency: #c0392b;
+  --emergency-glow: #ff7a6b;
   --emergency-soft: #fdecea;
   --max: 1200px;
 }
@@ -40,6 +40,10 @@ a {
 img {
   display: block;
   max-width: 100%;
+  /* The width/height attributes on <img> reserve space to prevent layout
+     shift, but the height attribute also acts as a fixed CSS height. Reset it
+     so `aspect-ratio` rules (and natural proportions) control the height. */
+  height: auto;
 }
 p {
   margin: 0;
@@ -161,58 +165,90 @@ main > .contact-band::after,
     inset 0 0 0 84px rgba(255, 255, 255, 0.025);
 }
 
-.emergency-bar {
-  background: var(--emergency);
-  color: var(--white);
-}
-.emergency-bar__inner {
-  min-height: 38px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6px 18px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  font-size: 13px;
-  font-weight: 750;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.emergency-bar__label,
-.emergency-bar__phones,
-.emergency-bar__phones a {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.emergency-bar__phones {
-  gap: 14px;
-}
-.emergency-bar__phones a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 .location-bar {
   background: var(--teal-deep);
   color: var(--white);
-  border-bottom: 1px solid var(--teal-deep);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .location-bar__inner {
-  min-height: 35px;
+  min-height: 42px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-weight: 500;
+}
+.location-bar__emergency {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 6px 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+.location-bar__emergency-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.location-bar__inner span:first-child {
-  display: flex;
+.location-bar__phones {
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 4px;
+}
+.location-bar__phones a {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+.location-bar__phones a:hover,
+.location-bar__phones a:focus-visible {
+  background: var(--white);
+  color: var(--teal-deep);
+}
+.location-bar__place {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  transition: color 0.2s ease;
+}
+.location-bar__place svg:first-child {
+  flex: none;
+  color: var(--mint);
+}
+.location-bar__nearby {
+  color: rgba(255, 255, 255, 0.62);
+}
+.location-bar__arrow {
+  flex: none;
+  opacity: 0.55;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.location-bar__place:hover {
+  color: var(--white);
+}
+.location-bar__place:hover > span {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 4px;
+}
+.location-bar__place:hover .location-bar__arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
 }
 .site-header {
   position: sticky;
@@ -1779,76 +1815,154 @@ main > .contact-band::after,
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+.emergency-pulse {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emergency-glow);
+}
+.emergency-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--emergency-glow);
+  border-radius: 50%;
+  animation: emergency-ping 2s ease-out infinite;
+}
 .emergency-callout {
-  padding: 48px 0;
-  background: var(--emergency-soft);
-  border-top: 4px solid var(--emergency);
-  border-bottom: 1px solid #f3c4bf;
+  padding: 56px 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
-.emergency-callout__grid {
+.emergency-card {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.15fr 1fr;
   align-items: center;
-  gap: 40px;
-}
-.emergency-callout__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--emergency);
+  gap: 48px;
+  overflow: hidden;
+  padding: 44px 48px;
+  border-radius: 22px;
+  background-color: var(--teal-deep);
+  background-image:
+    radial-gradient(
+      circle at 92% 8%,
+      rgba(255, 255, 255, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.13) 1px, transparent 1.2px);
+  background-size:
+    auto,
+    20px 20px;
   color: var(--white);
-  font-size: 12px;
+  box-shadow: 0 18px 44px rgba(41, 77, 125, 0.18);
+}
+.emergency-card__intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.emergency-card__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--emergency-glow);
+}
+.emergency-card__kicker {
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.emergency-card__kicker::before {
+  display: none;
+}
+.emergency-card h2 {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3vw, 38px);
   font-weight: 750;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
 }
-.emergency-callout h2 {
-  margin: 14px 0 10px;
-  color: var(--emergency-deep);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 750;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+.emergency-card p {
+  max-width: 470px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 16px;
+  font-weight: 500;
 }
-.emergency-callout p {
-  margin: 0;
-  font-weight: 600;
-}
-.emergency-callout__phones {
+.emergency-card__phones {
   display: grid;
   gap: 12px;
 }
-.emergency-callout__phones a {
+.emergency-card__phones a {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  border-radius: 14px;
-  background: var(--emergency);
-  color: var(--white);
+  gap: 16px;
+  padding: 14px 18px 14px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
   font-size: 22px;
   font-weight: 750;
-  letter-spacing: 0.02em;
-  box-shadow: 0 8px 22px rgba(180, 35, 24, 0.22);
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.emergency-card__phones a:hover,
+.emergency-card__phones a:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--ink);
+}
+.emergency-card__phone-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--emergency);
   transition: background 0.2s ease;
 }
-.emergency-callout__phones a:hover,
-.emergency-callout__phones a:focus-visible {
-  background: var(--emergency-deep);
+.emergency-card__phones a:hover .emergency-card__phone-icon,
+.emergency-card__phones a:focus-visible .emergency-card__phone-icon {
+  background: var(--emergency-soft);
 }
-.emergency-callout__phones span {
+.emergency-card__phone-text {
   display: flex;
+  flex: 1;
   flex-direction: column;
 }
-.emergency-callout__phones small {
+.emergency-card__phone-text small {
   margin-bottom: 2px;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.9;
+  opacity: 0.75;
+}
+.emergency-card__arrow {
+  opacity: 0.6;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.emergency-card__phones a:hover .emergency-card__arrow,
+.emergency-card__phones a:focus-visible .emergency-card__arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
 }
 
 .site-footer {
@@ -1929,6 +2043,9 @@ main > .contact-band::after,
 }
 
 @media (max-width: 1050px) {
+  .location-bar__nearby {
+    display: none;
+  }
   .desktop-nav {
     gap: 15px;
   }
@@ -2114,23 +2231,46 @@ main > .contact-band::after,
 }
 
 @media (max-width: 560px) {
-  .emergency-bar__inner {
-    font-size: 11px;
-    gap: 4px 12px;
-  }
   .emergency-callout {
     padding: 36px 0;
   }
-  .emergency-callout__phones a {
+  .emergency-card {
+    padding: 28px 22px;
+  }
+  .emergency-card__intro {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .emergency-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+  }
+  .emergency-card__phones a {
     font-size: 19px;
   }
   .location-bar__inner {
     justify-content: center;
-    min-height: 32px;
+    min-height: 44px;
+    padding-block: 6px;
+  }
+  .location-bar__place {
+    display: none;
+  }
+  .location-bar__emergency {
+    gap: 6px;
+    padding-left: 10px;
+  }
+  .location-bar__emergency-label {
+    gap: 8px;
     font-size: 10px;
   }
-  .location-bar__inner span:last-child {
-    display: none;
+  .location-bar__phones {
+    gap: 0;
+  }
+  .location-bar__phones a {
+    padding: 3px 7px;
+    font-size: 12px;
   }
   .nav-shell {
     min-height: 68px;
@@ -2276,9 +2416,10 @@ main > .contact-band::after,
   .contact-band {
     padding: 72px 0;
   }
-  .emergency-callout__grid {
+  .emergency-card {
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 30px;
+    padding: 34px 30px;
   }
   .footer-grid {
     grid-template-columns: 1fr;
@@ -2305,13 +2446,13 @@ main > .contact-band::after,
     justify-content: center;
     gap: 8px;
     min-height: 52px;
-    border: 1px solid var(--emergency);
+    border: 1px solid var(--teal-deep);
     border-radius: 14px;
-    background: var(--emergency);
+    background: var(--teal-deep);
     color: var(--white);
     font-size: 14px;
     font-weight: 700;
-    box-shadow: 0 10px 28px rgba(180, 35, 24, 0.25);
+    box-shadow: 0 10px 28px rgba(41, 77, 125, 0.22);
   }
 }
 
@@ -2360,6 +2501,17 @@ main > .contact-band::after,
   }
 }
 
+@keyframes emergency-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  80%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
 @keyframes calm-pulse {
   0%,
   100% {
