@@ -1,0 +1,8 @@
+HIMAL HEALTH CLINIC Pvt. Ltd.
+Remove Clinic & Pharmacy from the Header.
+6:00 AM to 10:00 PM
+ClinicNP HHC Credentials- admin, admin123
+Appointment Booking Per Doctors. Only Bookable the Next Day Onwards not on current day,
+Real Google Map Location and  Real Images.
+Add News & Events Section to Showcase Health Camps
+Services: Video X-Ray, Doctor's Consulting, Ultrasound, OPD, Dental, Eye Care, Pharmacy, Laboratory Services, Surture, Electrocardiography, ECHO, Skin Analysis & Dermatology Checkups.
