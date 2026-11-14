@@ -1,49 +1,11 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "../vendor/shadcn-tailwind-4.13.0.css";
-
-/* The vendored shadcn sheet ships `no-scrollbar`, but the component catalog
-   (components/ui/message-scroller.tsx, components/ui/attachment.tsx) asks for
-   the `scrollbar-*` family. Without these the scroll containers fall back to
-   the platform scrollbar and the utilities never reach the bundle. */
-@utility scrollbar-thin {
-  scrollbar-width: thin;
-  &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 9999px;
-    background-color: color-mix(in oklab, currentColor 22%, transparent);
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: color-mix(in oklab, currentColor 34%, transparent);
-  }
-}
-
-@utility scrollbar-none {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@utility scrollbar-gutter-stable {
-  scrollbar-gutter: stable;
-}
-
 :root {
-  --ink: #153b3f;
-  --teal: #28736e;
-  --teal-deep: #1e5955;
-  --mint: #e9f3f1;
-  --paper: #fafcfb;
+  --ink: #1c3558;
+  --teal: #3e6b9a;
+  --teal-deep: #294d7d;
+  --mint: #eaf2f9;
+  --paper: #fbfcfe;
   --white: #ffffff;
-  --line: #c9deda;
+  --line: #c8d8e8;
   --max: 1200px;
 }
 
@@ -147,7 +109,7 @@ main > section::before,
   pointer-events: none;
   background-image: radial-gradient(
     circle,
-    rgba(40, 115, 110, 0.18) 1.2px,
+    rgba(62, 107, 154, 0.18) 1.2px,
     transparent 1.4px
   );
   background-size: 24px 24px;
@@ -165,11 +127,11 @@ main > section::after,
   width: 430px;
   height: 430px;
   pointer-events: none;
-  border: 1px solid rgba(40, 115, 110, 0.18);
+  border: 1px solid rgba(62, 107, 154, 0.18);
   border-radius: 50%;
   box-shadow:
-    inset 0 0 0 42px rgba(233, 243, 241, 0.28),
-    inset 0 0 0 84px rgba(40, 115, 110, 0.05);
+    inset 0 0 0 42px rgba(234, 242, 249, 0.28),
+    inset 0 0 0 84px rgba(62, 107, 154, 0.05);
   animation: texture-orbit 18s ease-in-out infinite alternate;
 }
 main > section:nth-of-type(even)::after {
@@ -317,7 +279,7 @@ main > .contact-band::after,
   border-color: var(--ink);
   background: var(--ink);
   color: var(--white);
-  box-shadow: 0 10px 24px rgba(21, 59, 63, 0.18);
+  box-shadow: 0 10px 24px rgba(28, 53, 88, 0.18);
 }
 .button--compact {
   min-height: 44px;
@@ -478,7 +440,7 @@ main > .contact-band::after,
   border: 1px solid var(--line);
   border-radius: 24px;
   background: var(--white);
-  box-shadow: 0 18px 50px rgba(36, 94, 90, 0.1);
+  box-shadow: 0 18px 50px rgba(41, 77, 125, 0.1);
 }
 .hero-media img {
   width: 100%;
@@ -587,14 +549,14 @@ main > .contact-band::after,
   background-image:
     radial-gradient(
       circle at 88% 12%,
-      rgba(40, 115, 110, 0.1),
+      rgba(62, 107, 154, 0.1),
       transparent 31%
     ),
-    radial-gradient(circle, rgba(40, 115, 110, 0.1) 1px, transparent 1.2px);
+    radial-gradient(circle, rgba(62, 107, 154, 0.1) 1px, transparent 1.2px);
   background-size:
     auto,
     18px 18px;
-  box-shadow: 0 8px 26px rgba(36, 94, 90, 0.06);
+  box-shadow: 0 8px 26px rgba(41, 77, 125, 0.06);
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
@@ -603,7 +565,7 @@ main > .contact-band::after,
 .numbered-card:hover {
   transform: translateY(-5px) rotate(0.2deg);
   border-color: var(--teal);
-  box-shadow: 0 18px 36px rgba(36, 94, 90, 0.12);
+  box-shadow: 0 18px 36px rgba(41, 77, 125, 0.12);
 }
 .numbered-card__top {
   display: flex;
@@ -751,7 +713,7 @@ main > .contact-band::after,
   border: 1px solid var(--line);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 12px 36px rgba(21, 59, 63, 0.07);
+  box-shadow: 0 12px 36px rgba(28, 53, 88, 0.07);
 }
 .trust-row {
   width: 100%;
@@ -839,11 +801,11 @@ main > .contact-band::after,
   background-color: var(--mint);
   background-image: radial-gradient(
     circle,
-    rgba(40, 115, 110, 0.13) 1px,
+    rgba(62, 107, 154, 0.13) 1px,
     transparent 1.2px
   );
   background-size: 20px 20px;
-  box-shadow: 0 12px 36px rgba(21, 59, 63, 0.08);
+  box-shadow: 0 12px 36px rgba(28, 53, 88, 0.08);
 }
 .trust-visual__stage {
   position: relative;
@@ -858,14 +820,14 @@ main > .contact-band::after,
   width: 90%;
   height: 360px;
   object-fit: contain;
-  filter: drop-shadow(0 18px 22px rgba(21, 59, 63, 0.16));
+  filter: drop-shadow(0 18px 22px rgba(28, 53, 88, 0.16));
   animation:
     trust-arrive 0.45s ease both,
     health-float 5.4s 0.45s ease-in-out infinite;
 }
 .trust-orbit {
   position: absolute;
-  border: 1px solid rgba(40, 115, 110, 0.28);
+  border: 1px solid rgba(62, 107, 154, 0.28);
   border-radius: 50%;
 }
 .trust-orbit--one {
@@ -902,142 +864,6 @@ main > .contact-band::after,
   font-size: 13px;
 }
 
-.motion-section {
-  overflow: hidden;
-  background: var(--white);
-  border-block: 1px solid var(--line);
-}
-.motion-section .section-heading p {
-  max-width: 610px;
-  margin-top: 20px;
-}
-.health-motion-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  perspective: 1200px;
-}
-.health-motion-card {
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
-  --glow-x: 50%;
-  --glow-y: 50%;
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: var(--paper);
-  box-shadow: 0 16px 42px rgba(21, 59, 63, 0.08);
-  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
-  transform-style: preserve-3d;
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease,
-    box-shadow 0.18s ease;
-  will-change: transform;
-}
-.health-motion-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at var(--glow-x) var(--glow-y),
-    rgba(40, 115, 110, 0.14),
-    transparent 35%
-  );
-  opacity: 0;
-  transition: opacity 0.18s ease;
-}
-.health-motion-card:hover {
-  border-color: var(--teal);
-  box-shadow: 0 24px 54px rgba(21, 59, 63, 0.14);
-}
-.health-motion-card:hover::after {
-  opacity: 1;
-}
-.health-motion-card__visual {
-  position: relative;
-  min-height: 310px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  margin: 13px;
-  border-radius: 17px;
-  background: var(--mint);
-  transform: translateZ(24px);
-}
-.health-motion-card__visual img {
-  position: relative;
-  z-index: 2;
-  width: 92%;
-  height: 290px;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 20px rgba(21, 59, 63, 0.16));
-  animation: health-float 5.6s ease-in-out infinite;
-}
-.health-motion-card:nth-child(2) .health-motion-card__visual img {
-  animation-delay: -0.9s;
-}
-.health-motion-card:nth-child(3) .health-motion-card__visual img {
-  animation-delay: -1.8s;
-}
-.motion-orbit {
-  position: absolute;
-  z-index: 1;
-  border: 1px solid rgba(40, 115, 110, 0.35);
-  border-radius: 50%;
-}
-.motion-orbit--one {
-  width: 230px;
-  height: 230px;
-  animation: orbit-spin 12s linear infinite;
-}
-.motion-orbit--one::after {
-  content: "";
-  position: absolute;
-  top: 15px;
-  left: 28px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 0 9px rgba(40, 115, 110, 0.12);
-}
-.motion-orbit--two {
-  width: 165px;
-  height: 165px;
-  border-style: dashed;
-  animation: orbit-spin 9s linear infinite reverse;
-}
-.health-motion-card__copy {
-  position: relative;
-  z-index: 2;
-  padding: 20px 25px 28px;
-  transform: translateZ(12px);
-}
-.health-motion-card__copy > span {
-  color: var(--teal-deep);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.health-motion-card blockquote {
-  min-height: 120px;
-  margin: 17px 0 16px;
-  color: var(--ink);
-  font-size: clamp(23px, 2.1vw, 30px);
-  font-weight: 750;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
-}
-.health-motion-card p {
-  font-size: 14px;
-  line-height: 1.65;
-}
-
 .blog-section {
   background: var(--paper);
 }
@@ -1056,11 +882,11 @@ main > .contact-band::after,
   background-color: var(--white);
   background-image: radial-gradient(
     circle,
-    rgba(40, 115, 110, 0.08) 1px,
+    rgba(62, 107, 154, 0.08) 1px,
     transparent 1.2px
   );
   background-size: 20px 20px;
-  box-shadow: 0 10px 30px rgba(21, 59, 63, 0.06);
+  box-shadow: 0 10px 30px rgba(28, 53, 88, 0.06);
   transition:
     transform 0.18s ease,
     border-color 0.18s ease,
@@ -1069,7 +895,7 @@ main > .contact-band::after,
 .blog-card:hover {
   transform: translateY(-3px);
   border-color: var(--teal);
-  box-shadow: 0 18px 38px rgba(21, 59, 63, 0.11);
+  box-shadow: 0 18px 38px rgba(28, 53, 88, 0.11);
 }
 .blog-card__media {
   min-height: 250px;
@@ -1082,7 +908,7 @@ main > .contact-band::after,
   width: 88%;
   height: 230px;
   object-fit: contain;
-  filter: drop-shadow(0 15px 18px rgba(21, 59, 63, 0.14));
+  filter: drop-shadow(0 15px 18px rgba(28, 53, 88, 0.14));
   transition: transform 0.3s ease;
 }
 .blog-card:hover .blog-card__media img {
@@ -1191,7 +1017,7 @@ main > .contact-band::after,
   border: 1px solid var(--line);
   border-radius: 24px;
   background: var(--white);
-  box-shadow: 0 18px 46px rgba(21, 59, 63, 0.1);
+  box-shadow: 0 18px 46px rgba(28, 53, 88, 0.1);
 }
 .blog-article__visual img {
   width: 100%;
@@ -1449,7 +1275,7 @@ main > .contact-band::after,
   border: 1px solid var(--line);
   border-radius: 22px;
   background: var(--paper);
-  box-shadow: 0 14px 38px rgba(36, 94, 90, 0.08);
+  box-shadow: 0 14px 38px rgba(41, 77, 125, 0.08);
 }
 .image-feature__media img {
   width: 100%;
@@ -1544,7 +1370,7 @@ main > .contact-band::after,
   padding: 45px;
   background-image: radial-gradient(
     circle at 90% 12%,
-    rgba(40, 115, 110, 0.1),
+    rgba(62, 107, 154, 0.1),
     transparent 30%
   );
   transition: background 0.2s ease;
@@ -1578,7 +1404,7 @@ main > .contact-band::after,
   background-color: var(--white);
   background-image: radial-gradient(
     circle,
-    rgba(40, 115, 110, 0.1) 1px,
+    rgba(62, 107, 154, 0.1) 1px,
     transparent 1.2px
   );
   background-size: 18px 18px;
@@ -1604,10 +1430,10 @@ main > .contact-band::after,
   background-image:
     radial-gradient(
       circle at 8% 50%,
-      rgba(40, 115, 110, 0.11),
+      rgba(62, 107, 154, 0.11),
       transparent 24%
     ),
-    radial-gradient(circle, rgba(40, 115, 110, 0.08) 1px, transparent 1.2px);
+    radial-gradient(circle, rgba(62, 107, 154, 0.08) 1px, transparent 1.2px);
   background-size:
     auto,
     20px 20px;
@@ -1643,7 +1469,7 @@ main > .contact-band::after,
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--white);
-  box-shadow: 0 10px 28px rgba(21, 59, 63, 0.08);
+  box-shadow: 0 10px 28px rgba(28, 53, 88, 0.08);
 }
 .doctor-role__photo img {
   width: 100%;
@@ -1695,7 +1521,7 @@ main > .contact-band::after,
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--white);
-  box-shadow: 0 8px 26px rgba(36, 94, 90, 0.06);
+  box-shadow: 0 8px 26px rgba(41, 77, 125, 0.06);
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
@@ -1704,7 +1530,7 @@ main > .contact-band::after,
 .doctor-card:hover {
   transform: translateY(-4px);
   border-color: var(--teal);
-  box-shadow: 0 18px 36px rgba(36, 94, 90, 0.12);
+  box-shadow: 0 18px 36px rgba(41, 77, 125, 0.12);
 }
 .doctor-card__number {
   font-size: 12px;
@@ -2006,7 +1832,7 @@ main > .contact-band::after,
     border: 1px solid var(--line);
     border-radius: 14px;
     background: var(--white);
-    box-shadow: 0 14px 34px rgba(36, 94, 90, 0.14);
+    box-shadow: 0 14px 34px rgba(41, 77, 125, 0.14);
   }
   .mobile-menu nav a {
     display: flex;
@@ -2097,15 +1923,8 @@ main > .contact-band::after,
   .section-illustration {
     width: min(460px, 100%);
   }
-  .health-motion-grid,
   .blog-grid {
     grid-template-columns: 1fr;
-  }
-  .health-motion-card {
-    max-width: 620px;
-  }
-  .health-motion-card blockquote {
-    min-height: auto;
   }
   .blog-card {
     max-width: 680px;
@@ -2174,12 +1993,6 @@ main > .contact-band::after,
   .blog-article__body {
     padding-top: 60px;
     padding-bottom: 75px;
-  }
-  .health-motion-card__visual {
-    min-height: 255px;
-  }
-  .health-motion-card__visual img {
-    height: 240px;
   }
   .blog-card__copy {
     padding: 24px;
@@ -2315,7 +2128,7 @@ main > .contact-band::after,
     color: var(--white);
     font-size: 14px;
     font-weight: 700;
-    box-shadow: 0 10px 28px rgba(36, 94, 90, 0.22);
+    box-shadow: 0 10px 28px rgba(41, 77, 125, 0.22);
   }
 }
 
@@ -2327,8 +2140,6 @@ main > .contact-band::after,
     animation: none !important;
     transition: none !important;
   }
-  .health-motion-card,
-  .health-motion-card:hover,
   .blog-card:hover,
   .blog-card:hover .blog-card__media img {
     transform: none !important;

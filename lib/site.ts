@@ -9,6 +9,10 @@ import {
   TestTube2,
 } from "lucide-react";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://himal-health-clinic.vercel.app";
+
 export const site = {
   name: "Himal Health Clinic Pvt. Ltd.",
   shortName: "Himal",
@@ -18,7 +22,7 @@ export const site = {
   pan: "128929655",
   phones: ["9761628676", "9814222858"],
   hours: "Sunday–Friday · 7:00 AM–8:00 PM",
-  url: "https://himal-health-clinic.sabitradhungana2015.chatgpt.site",
+  url: siteUrl,
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=Katunje+Srijananagar+Sallaghari+Bhaktapur+Nepal",
   logo: "/logo.png",
@@ -140,8 +144,6 @@ export const doctors = [
 
 export const nav = [
   { href: "/", label: "Home" },
-  { href: "/clinic-services", label: "Clinic" },
-  { href: "/pharmacy", label: "Pharmacy" },
   { href: "/doctors", label: "Doctors" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },

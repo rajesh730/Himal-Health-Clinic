@@ -67,17 +67,14 @@ export const metadata: Metadata = {
   // numbers on the doctors page into phone links.
   formatDetection: { telephone: false, address: false, email: false },
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
-    ],
-    shortcut: "/favicon.svg",
+    icon: [{ url: "/icon.png", type: "image/png", sizes: "512x512" }],
+    shortcut: "/icon.png",
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1e5955",
+  themeColor: "#294d7d",
   colorScheme: "light",
 };
 

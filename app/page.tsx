@@ -8,7 +8,6 @@ import {
   Stethoscope,
 } from "lucide-react";
 import Link from "next/link";
-import { HealthMotion } from "@/components/health-motion";
 import { InteractiveTrust } from "@/components/interactive-trust";
 import { ContactBand } from "@/components/site-shell";
 import { blogPosts } from "@/lib/blog";
@@ -270,23 +269,6 @@ export default function Home() {
             </h2>
           </div>
           <InteractiveTrust />
-        </div>
-      </section>
-
-      <section
-        className="section motion-section"
-        aria-labelledby="motion-title"
-      >
-        <div className="container">
-          <div className="section-heading section-heading--stacked">
-            <span className="kicker">Health in motion</span>
-            <h2 id="motion-title">Calm illustrations. Useful reminders.</h2>
-            <p>
-              Move your pointer across each scene and watch the healthcare story
-              respond.
-            </p>
-          </div>
-          <HealthMotion />
         </div>
       </section>
 

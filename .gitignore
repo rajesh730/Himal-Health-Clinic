@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+*.tsbuildinfo
 
 # misc
 .DS_Store
@@ -29,20 +30,21 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # local tooling and credentials
 /.jetro/
 /.mcp.json
 /.cursor/mcp.json
 /.openai/
+/.sites-runtime/
+/.wrangler/
 
 # vercel
 .vercel
 
-# typescript
+# TypeScript
 next-env.d.ts
 /dist/
-/.wrangler/
-/.sites-runtime/
 /outputs/
 /work/
