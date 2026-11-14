@@ -47,19 +47,8 @@ export default function DoctorsPage() {
         title="Know who is available before you visit."
         description="Doctor schedules can change. Confirm the current clinician and consultation time before travelling to the Katunje clinic."
       />
-      <section className="image-feature-section">
-        <div className="container image-feature">
-          <figure className="image-feature__media">
-            <img
-              src="/images/consultation.webp"
-              alt="Representative doctor listening carefully during a calm consultation"
-              loading="lazy"
-              decoding="async"
-              width={1536}
-              height={1024}
-            />
-            <figcaption>Representative consultation scene.</figcaption>
-          </figure>
+      <section className="image-feature-section image-feature-section--compact">
+        <div className="container image-feature image-feature--text-only">
           <div>
             <span className="kicker">Care through communication</span>
             <h2>Good consultation starts with listening.</h2>

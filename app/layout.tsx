@@ -82,8 +82,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang={site.language}>
-      <body>
+    // suppressHydrationWarning: browser extensions (Grammarly, ColorZilla, …)
+    // inject attributes on <html>/<body> before hydration. This only ignores
+    // attribute mismatches on these two elements, not their children.
+    <html lang={site.language} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>

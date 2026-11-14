@@ -93,7 +93,7 @@ export function SiteFooter() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Developed by Infobytes Nepal <ArrowUpRight size={13} />
+          Designed &amp; developed by Infobytes Nepal <ArrowUpRight size={13} />
         </a>
       </div>
       <a className="mobile-cta" href={`tel:${phonesE164[0]}`}>

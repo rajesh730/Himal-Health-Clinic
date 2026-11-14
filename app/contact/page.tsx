@@ -111,16 +111,23 @@ export default function ContactPage() {
           </aside>
         </div>
       </section>
-      <section className="section section--dark">
-        <div className="container local-grid">
+      <section className="section section--dark nearby-areas">
+        <div className="container nearby-areas__grid">
           <div>
             <span className="kicker kicker--light">Nearby areas</span>
-            <h2>Convenient for local Bhaktapur patients.</h2>
+            <h2>Care within easy reach.</h2>
+            <p>
+              Conveniently located for patients in Katunje and nearby Bhaktapur
+              communities.
+            </p>
           </div>
-          <div className="area-list area-list--dark">
-            {localAreas.map((area) => (
-              <span key={area}>{area}</span>
-            ))}
+          <div className="nearby-areas__list">
+            <span>We welcome patients from</span>
+            <div className="area-list area-list--dark">
+              {localAreas.map((area) => (
+                <span key={area}>{area}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>

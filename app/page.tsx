@@ -321,14 +321,24 @@ export default function Home() {
 
       <section className="section local-section" aria-labelledby="areas-title">
         <div className="container local-grid">
-          <div>
+          <div className="local-copy">
             <span className="kicker">Areas we serve</span>
-            <h2 id="areas-title">Local care for Bhaktapur communities.</h2>
+            <h2 id="areas-title">Care close to home.</h2>
+            <p>
+              Convenient local healthcare for families across Katunje and the
+              surrounding Bhaktapur communities.
+            </p>
           </div>
-          <div className="area-list">
-            {localAreas.map((area) => (
-              <span key={area}>{area}</span>
-            ))}
+          <div className="local-areas">
+            <span>Serving nearby communities</span>
+            <div className="area-list">
+              {localAreas.map((area) => (
+                <span key={area}>{area}</span>
+              ))}
+            </div>
+            <Link className="text-link" href="/contact">
+              View location and directions <ArrowUpRight size={17} />
+            </Link>
           </div>
         </div>
       </section>
