@@ -6,9 +6,9 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
-import { PageHero } from "@/components/site-shell";
+import { EmergencyCallout, PageHero } from "@/components/site-shell";
 import { PageSchema } from "@/components/structured-data";
-import { localAreas, site } from "@/lib/site";
+import { localAreas, phonesE164, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Clinic in Katunje, Bhaktapur",
@@ -31,6 +31,7 @@ export default function ContactPage() {
         title="Find the clinic in Katunje, Bhaktapur."
         description="Use the location details below and confirm the service, doctor schedule and opening time before travelling."
       />
+      <EmergencyCallout />
       <section className="image-feature-section">
         <div className="container image-feature">
           <figure className="image-feature__media">
@@ -88,8 +89,12 @@ export default function ContactPage() {
               Call the clinic to confirm a doctor schedule, service availability
               or medicine stock before travelling.
             </p>
-            {site.phones.map((phone) => (
-              <a className="pending-contact" href={`tel:${phone}`} key={phone}>
+            {site.phones.map((phone, index) => (
+              <a
+                className="pending-contact"
+                href={`tel:${phonesE164[index]}`}
+                key={phone}
+              >
                 <Phone size={22} />
                 <span>
                   <small>Clinic phone</small>
@@ -129,17 +134,6 @@ export default function ContactPage() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="section emergency-note">
-        <div className="container">
-          <strong>Medical emergency?</strong>
-          <p>
-            This website does not advertise emergency care. For severe breathing
-            difficulty, chest pain, major injury, loss of consciousness or
-            another life-threatening concern, go to the nearest emergency
-            department immediately.
-          </p>
         </div>
       </section>
     </>

@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin, Menu, Phone } from "lucide-react";
+import { ArrowUpRight, MapPin, Menu, Phone, Siren } from "lucide-react";
 import Link from "next/link";
 import { nav, phonesE164, site } from "@/lib/site";
 import {
@@ -21,9 +21,59 @@ export function Logo() {
   );
 }
 
+export function EmergencyBar() {
+  return (
+    <div className="emergency-bar" role="region" aria-label="Emergency services">
+      <div className="container emergency-bar__inner">
+        <span className="emergency-bar__label">
+          <Siren size={16} aria-hidden="true" /> Emergency services available
+        </span>
+        <span className="emergency-bar__phones">
+          {site.phones.map((phone, index) => (
+            <a href={`tel:${phonesE164[index]}`} key={phone}>
+              <Phone size={13} aria-hidden="true" /> {phone}
+            </a>
+          ))}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function EmergencyCallout() {
+  return (
+    <section className="emergency-callout" aria-labelledby="emergency-title">
+      <div className="container emergency-callout__grid">
+        <div>
+          <span className="emergency-callout__badge">
+            <Siren size={18} aria-hidden="true" /> Emergency
+          </span>
+          <h2 id="emergency-title">We provide emergency services.</h2>
+          <p>
+            For urgent medical problems, call the clinic straight away so our
+            team can prepare for your arrival.
+          </p>
+        </div>
+        <div className="emergency-callout__phones">
+          {site.phones.map((phone, index) => (
+            <a href={`tel:${phonesE164[index]}`} key={phone}>
+              <Phone size={22} aria-hidden="true" />
+              <span>
+                <small>Emergency call</small>
+                {phone}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function SiteHeader() {
   return (
     <>
+      <EmergencyBar />
       <div className="location-bar">
         <div className="container location-bar__inner">
           <span>
@@ -86,7 +136,7 @@ export function SiteFooter() {
       </div>
       <div className="container footer-bottom">
         <span>© 2026 {site.name}</span>
-        <span>Health information only · Not an emergency service</span>
+        <span>Emergency services available · {site.phones.join(" / ")}</span>
         <a
           className="developer-credit"
           href="https://www.infobytesnepal.com/"
@@ -97,7 +147,7 @@ export function SiteFooter() {
         </a>
       </div>
       <a className="mobile-cta" href={`tel:${phonesE164[0]}`}>
-        <Phone size={18} /> Call {site.phones[0]}
+        <Siren size={18} /> Emergency · Call {site.phones[0]}
       </a>
     </footer>
   );

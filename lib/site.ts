@@ -20,7 +20,7 @@ export const site = {
   nearby: "Near Suryabinayak and Sallaghari",
   address: "Suryabinayak Municipality Ward No. 5, Katunje, Bhaktapur, Nepal",
   pan: "128929655",
-  phones: ["9761628676", "9814222858"],
+  phones: ["9761626876", "9814222828"],
   hours: "Sunday–Friday · 7:00 AM–8:00 PM",
   url: siteUrl,
   mapUrl:

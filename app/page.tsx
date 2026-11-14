@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { InteractiveTrust } from "@/components/interactive-trust";
-import { ContactBand } from "@/components/site-shell";
+import { ContactBand, EmergencyCallout } from "@/components/site-shell";
 import { blogPosts } from "@/lib/blog";
 import {
   clinicServices,
@@ -42,7 +42,7 @@ const faq = [
   },
   {
     q: "Does the clinic provide emergency care?",
-    a: "No emergency service is advertised. For severe or life-threatening symptoms, go directly to the nearest emergency department.",
+    a: `Yes. Himal Health Clinic provides emergency services. For urgent medical problems, call ${site.phones.join(" or ")} straight away so the team can prepare for your arrival.`,
   },
 ];
 
@@ -85,11 +85,19 @@ export default function Home() {
           },
         ],
         areaServed: localAreas.map((name) => ({ "@type": "Place", name })),
-        availableService: clinicServices.map((service) => ({
-          "@type": "MedicalProcedure",
-          name: service.title,
-          description: service.text,
-        })),
+        availableService: [
+          {
+            "@type": "MedicalProcedure",
+            name: "Emergency services",
+            description:
+              "Emergency medical services. Call the clinic straight away for urgent problems.",
+          },
+          ...clinicServices.map((service) => ({
+            "@type": "MedicalProcedure",
+            name: service.title,
+            description: service.text,
+          })),
+        ],
         department: { "@id": `${site.url}/#pharmacy` },
       },
       {
@@ -177,6 +185,8 @@ export default function Home() {
           </figure>
         </div>
       </section>
+
+      <EmergencyCallout />
 
       <section className="intro-strip">
         <div className="container intro-strip__grid">
