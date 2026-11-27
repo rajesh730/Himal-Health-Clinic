@@ -3,12 +3,14 @@ import {
   ArrowRight,
   Eye,
   HeartHandshake,
+  MapPin,
   MapPinned,
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 import { ContactBand, PageHero } from "@/components/site-shell";
 import { PageSchema } from "@/components/structured-data";
+import { localAreas, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Our Clinic & Pharmacy in Bhaktapur",
@@ -39,6 +41,9 @@ const values = [
     text: "Healthcare is more useful when nearby families can find it, reach it and contact it easily.",
   },
 ];
+
+/** Neighbourhoods shown as cards; "Bhaktapur" is the district, not an area. */
+const serviceAreas = localAreas.filter((area) => area !== "Bhaktapur");
 
 export default function AboutPage() {
   return (
@@ -107,13 +112,39 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-      <section className="section">
-        <div className="container editorial-callout">
-          <span>Serving Bhaktapur</span>
-          <h2>Katunje · Srijananagar · Sallaghari · Suryabinayak</h2>
-          <Link className="button" href="/contact">
-            View our location <ArrowRight size={18} />
-          </Link>
+      <section className="section" aria-labelledby="service-area-title">
+        <div className="container service-area">
+          <div className="service-area__intro">
+            <span className="kicker">Serving Bhaktapur</span>
+            <h2 id="service-area-title">
+              Care close to home for nearby communities.
+            </h2>
+            <p>
+              Located in {site.location}, the clinic and in-house pharmacy are
+              a short trip for families across the surrounding neighbourhoods.
+            </p>
+            <Link className="button" href="/contact">
+              View our location <ArrowRight size={18} />
+            </Link>
+          </div>
+          <ul className="service-area__list">
+            {serviceAreas.map((area, index) => (
+              <li
+                className={index === 0 ? "service-area__item--home" : undefined}
+                key={area}
+              >
+                <span className="service-area__pin" aria-hidden="true">
+                  <MapPin size={19} />
+                </span>
+                <span>
+                  <strong>{area}</strong>
+                  <small>
+                    {index === 0 ? "Clinic location" : "Nearby community"}
+                  </small>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
       <ContactBand />

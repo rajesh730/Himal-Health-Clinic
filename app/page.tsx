@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   Clock3,
   MapPin,
+  Phone,
   Pill,
   Stethoscope,
 } from "lucide-react";
@@ -188,15 +189,82 @@ export default function Home() {
 
       <EmergencyCallout />
 
-      <section className="intro-strip">
-        <div className="container intro-strip__grid">
-          <span className="kicker">What patients need first</span>
-          <h2>Clear services. Simple directions.</h2>
-          <p>
-            Everything is organised so patients can understand what is
-            available, confirm a schedule and find the clinic without
-            unnecessary searching.
-          </p>
+      <section className="intro-strip" aria-labelledby="intro-title">
+        <div className="container">
+          <div className="intro-strip__head">
+            <div>
+              <span className="kicker">What patients need first</span>
+              <h2 id="intro-title">
+                Clear services.{" "}
+                <span className="intro-strip__accent">Simple directions.</span>
+              </h2>
+            </div>
+            <p>
+              Three quick steps from home to the consultation room — no
+              unnecessary searching.
+            </p>
+          </div>
+
+          <ol className="intro-steps">
+            <li>
+              <Link className="intro-step" href="/clinic-services">
+                <span className="intro-step__num" aria-hidden="true">
+                  01
+                </span>
+                <span className="intro-step__icon">
+                  <Stethoscope size={24} />
+                </span>
+                <h3>See what we offer</h3>
+                <p>
+                  Consultations, tests, vaccinations and an in-house pharmacy
+                  under one roof.
+                </p>
+                <span className="intro-step__cta">
+                  Browse services <ArrowRight size={17} />
+                </span>
+              </Link>
+            </li>
+            <li>
+              <a
+                className="intro-step intro-step--featured"
+                href={`tel:${phonesE164[0]}`}
+              >
+                <span className="intro-step__num" aria-hidden="true">
+                  02
+                </span>
+                <span className="intro-step__icon">
+                  <Phone size={24} />
+                </span>
+                <h3>Confirm your visit</h3>
+                <p>
+                  Call to check today’s doctor schedule before you travel.
+                </p>
+                <span className="intro-step__meta">
+                  <Clock3 size={15} /> {site.hours}
+                </span>
+                <span className="intro-step__cta">
+                  Call {site.phones[0]} <ArrowRight size={17} />
+                </span>
+              </a>
+            </li>
+            <li>
+              <Link className="intro-step" href="/contact">
+                <span className="intro-step__num" aria-hidden="true">
+                  03
+                </span>
+                <span className="intro-step__icon">
+                  <MapPin size={24} />
+                </span>
+                <h3>Find the clinic</h3>
+                <p>
+                  Ward No. 5, Katunje — close to Srijananagar and Sallaghari.
+                </p>
+                <span className="intro-step__cta">
+                  Get directions <ArrowRight size={17} />
+                </span>
+              </Link>
+            </li>
+          </ol>
         </div>
       </section>
 
