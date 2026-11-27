@@ -55,27 +55,26 @@ export default function AboutPage() {
         label="About"
       />
       <PageHero
-        invert
         eyebrow="About Himal · Katunje"
-        title="A local clinic built around clear, accessible care."
+        title="A local clinic built around clear, accessible care"
         description="Himal Health Clinic brings clinic information and pharmacy support together for patients in Katunje and nearby Bhaktapur communities."
       />
       <section className="image-feature-section">
         <div className="container image-feature image-feature--reverse">
-          <figure className="image-feature__media">
+          <figure className="image-feature__media image-feature__media--portrait">
             <img
-              src="/images/consultation.webp"
-              alt="Representative patient and doctor having a clear consultation"
+              src="/images/himal-clinic-owner.jpeg"
+              alt="The owner of Himal Health Clinic at the clinic desk, with patient records, a blood pressure monitor and health charts"
               loading="lazy"
               decoding="async"
-              width={1536}
-              height={1024}
+              width={1200}
+              height={1600}
             />
-            <figcaption>Representative consultation scene.</figcaption>
+            <figcaption>The clinic owner at the Himal Health Clinic desk</figcaption>
           </figure>
           <div>
             <span className="kicker">Care that feels understandable</span>
-            <h2>Time, attention and clear explanations matter.</h2>
+            <h2>Time, attention and clear explanations matter</h2>
             <p>
               The clinic’s role is to help patients understand their concern,
               their options and the next practical step.
@@ -87,7 +86,7 @@ export default function AboutPage() {
         <div className="container about-lead">
           <span className="kicker">Our purpose</span>
           <h2>
-            Make everyday healthcare easier to understand and easier to reach.
+            Make everyday healthcare easier to understand and easier to reach
           </h2>
           <p>
             The clinic serves people looking for practical consultation, routine
@@ -98,14 +97,11 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-      <section className="section value-section">
-        <div className="container numbered-grid">
-          {values.map(({ icon: Icon, title, text }, index) => (
-            <article className="numbered-card" key={title}>
-              <div className="numbered-card__top">
-                <span>0{index + 1}</span>
-                <Icon size={25} />
-              </div>
+      <section className="section section--tint">
+        <div className="container feature-grid">
+          {values.map(({ icon: Icon, title, text }) => (
+            <article className="feature" key={title}>
+              <Icon size={18} aria-hidden="true" />
               <h3>{title}</h3>
               <p>{text}</p>
             </article>
@@ -117,14 +113,14 @@ export default function AboutPage() {
           <div className="service-area__intro">
             <span className="kicker">Serving Bhaktapur</span>
             <h2 id="service-area-title">
-              Care close to home for nearby communities.
+              Care close to home for nearby communities
             </h2>
             <p>
               Located in {site.location}, the clinic and in-house pharmacy are
               a short trip for families across the surrounding neighbourhoods.
             </p>
             <Link className="button" href="/contact">
-              View our location <ArrowRight size={18} />
+              View our location <ArrowRight size={16} />
             </Link>
           </div>
           <ul className="service-area__list">
@@ -134,7 +130,7 @@ export default function AboutPage() {
                 key={area}
               >
                 <span className="service-area__pin" aria-hidden="true">
-                  <MapPin size={19} />
+                  <MapPin size={18} />
                 </span>
                 <span>
                   <strong>{area}</strong>

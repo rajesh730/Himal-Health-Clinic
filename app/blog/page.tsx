@@ -22,16 +22,15 @@ export default function BlogPage() {
         label="Health Blog"
       />
       <PageHero
-        invert
         eyebrow="Health blog · Bhaktapur"
-        title="Clear health information for everyday decisions."
+        title="Clear health information for everyday decisions"
         description="Practical articles about preparing for appointments, using medicines responsibly and building healthier daily routines."
       />
       <section className="section">
         <div className="container">
           <div className="section-heading section-heading--stacked">
             <span className="kicker">Latest articles</span>
-            <h2>Useful guidance, written in plain language.</h2>
+            <h2>Useful guidance, written in plain language</h2>
           </div>
           <div className="blog-grid">
             {blogPosts.map((post) => (
@@ -60,14 +59,14 @@ export default function BlogPage() {
                   </h2>
                   <p>{post.excerpt}</p>
                   <Link className="text-link" href={post.href}>
-                    Read article <ArrowUpRight size={17} />
+                    Read article <ArrowUpRight size={16} />
                   </Link>
                 </div>
               </article>
             ))}
           </div>
           <div className="blog-note">
-            <BookOpen size={24} />
+            <BookOpen size={18} />
             <p>
               Articles provide general education only. Personal medical
               decisions require advice from a qualified health professional who

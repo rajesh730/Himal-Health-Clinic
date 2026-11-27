@@ -5,12 +5,13 @@ import {
   Clock3,
   MapPin,
   Phone,
-  Pill,
   Stethoscope,
 } from "lucide-react";
 import Link from "next/link";
-import { InteractiveTrust } from "@/components/interactive-trust";
+import { ScheduleBoard } from "@/components/schedule-board";
+import { HeroRidge } from "@/components/hero-ridge";
 import { ContactBand, EmergencyCallout } from "@/components/site-shell";
+import { TrustPoints } from "@/components/trust-points";
 import { blogPosts } from "@/lib/blog";
 import {
   clinicServices,
@@ -139,80 +140,65 @@ export default function Home() {
       <section className="home-hero">
         <div className="container home-hero__grid">
           <div className="home-hero__copy">
-            <span className="kicker kicker--light">Katunje · Bhaktapur</span>
-            <h1>Clinic and pharmacy care in Katunje, Bhaktapur.</h1>
+            <span className="hero-kicker">
+              <Clock3 size={16} aria-hidden="true" />
+              <span className="time">{site.hours}</span>
+            </span>
+            <h1>Clinic and pharmacy care in Katunje, Bhaktapur</h1>
             <p>
-              Clear consultations, practical health support and convenient
-              access to medicines—close to Srijananagar and Sallaghari.
+              General and specialist consultations, routine health checks and
+              an in-house pharmacy under one roof, close to Srijananagar and
+              Sallaghari.
             </p>
             <div className="action-row">
-              <Link className="button button--light" href="/clinic-services">
-                Explore clinic services <ArrowRight size={18} />
+              <Link className="button button--on-brand" href="/clinic-services">
+                Explore clinic services <ArrowRight size={16} />
               </Link>
-              <Link className="button button--outline-light" href="/contact">
-                <MapPin size={18} /> Find us
+              <Link className="button button--ghost-on-brand" href="/contact">
+                <MapPin size={16} /> Find us
               </Link>
-            </div>
-            <div className="hero-proof">
-              <span>
-                <Stethoscope size={18} /> Clinic information
-              </span>
-              <span>
-                <Pill size={18} /> In-house pharmacy
-              </span>
-              <span>
-                <Clock3 size={18} /> {site.hours}
-              </span>
             </div>
           </div>
-          <figure className="hero-media">
-            <div className="hero-media__label">
-              <span>01</span> Local care
-            </div>
-            {/* Largest Contentful Paint element — fetched eagerly at high
-                priority rather than lazily. */}
+          {/* Largest Contentful Paint element: fetched eagerly. */}
+          <figure className="hero-photo">
             <img
-              src="/images/clinic-interior.webp"
-              alt="Representative bright and welcoming neighbourhood clinic interior"
-              width={1536}
-              height={1024}
+              src="/images/himal-clinic-owner.jpeg"
+              alt="The owner of Himal Health Clinic smiling at the clinic desk, with a patient monitor and health charts on the wall"
+              width={1200}
+              height={1600}
               fetchPriority="high"
               decoding="async"
             />
-            <figcaption>
-              A calm, welcoming environment for everyday care. Representative
-              image.
-            </figcaption>
+            <figcaption>Clinic owner at the Himal Health Clinic desk</figcaption>
           </figure>
         </div>
+        <HeroRidge />
       </section>
+
+      <div className="board-band">
+        <div className="container">
+          <ScheduleBoard />
+        </div>
+      </div>
 
       <EmergencyCallout />
 
-      <section className="intro-strip" aria-labelledby="intro-title">
+      <section className="section" aria-labelledby="intro-title">
         <div className="container">
-          <div className="intro-strip__head">
+          <div className="section-heading">
             <div>
               <span className="kicker">What patients need first</span>
-              <h2 id="intro-title">
-                Clear services.{" "}
-                <span className="intro-strip__accent">Simple directions.</span>
-              </h2>
+              <h2 id="intro-title">Clear services, simple directions</h2>
             </div>
-            <p>
-              Three quick steps from home to the consultation room — no
-              unnecessary searching.
-            </p>
+            <p>Three quick steps from home to the consultation room.</p>
           </div>
 
           <ol className="intro-steps">
             <li>
               <Link className="intro-step" href="/clinic-services">
-                <span className="intro-step__num" aria-hidden="true">
-                  01
-                </span>
-                <span className="intro-step__icon">
-                  <Stethoscope size={24} />
+                <span className="intro-step__top">
+                  <span className="intro-step__num">Step 1</span>
+                  <Stethoscope size={18} aria-hidden="true" />
                 </span>
                 <h3>See what we offer</h3>
                 <p>
@@ -220,47 +206,39 @@ export default function Home() {
                   under one roof.
                 </p>
                 <span className="intro-step__cta">
-                  Browse services <ArrowRight size={17} />
+                  Browse services <ArrowRight size={16} />
                 </span>
               </Link>
             </li>
             <li>
-              <a
-                className="intro-step intro-step--featured"
-                href={`tel:${phonesE164[0]}`}
-              >
-                <span className="intro-step__num" aria-hidden="true">
-                  02
-                </span>
-                <span className="intro-step__icon">
-                  <Phone size={24} />
+              <a className="intro-step" href={`tel:${phonesE164[0]}`}>
+                <span className="intro-step__top">
+                  <span className="intro-step__num">Step 2</span>
+                  <Phone size={18} aria-hidden="true" />
                 </span>
                 <h3>Confirm your visit</h3>
-                <p>
-                  Call to check today’s doctor schedule before you travel.
-                </p>
+                <p>Call to check today’s doctor schedule before you travel.</p>
                 <span className="intro-step__meta">
-                  <Clock3 size={15} /> {site.hours}
+                  <Clock3 size={16} aria-hidden="true" />
+                  <span className="time">{site.hours}</span>
                 </span>
                 <span className="intro-step__cta">
-                  Call {site.phones[0]} <ArrowRight size={17} />
+                  Call {site.phones[0]} <ArrowRight size={16} />
                 </span>
               </a>
             </li>
             <li>
               <Link className="intro-step" href="/contact">
-                <span className="intro-step__num" aria-hidden="true">
-                  03
-                </span>
-                <span className="intro-step__icon">
-                  <MapPin size={24} />
+                <span className="intro-step__top">
+                  <span className="intro-step__num">Step 3</span>
+                  <MapPin size={18} aria-hidden="true" />
                 </span>
                 <h3>Find the clinic</h3>
                 <p>
-                  Ward No. 5, Katunje — close to Srijananagar and Sallaghari.
+                  Ward No. 5, Katunje, close to Srijananagar and Sallaghari.
                 </p>
                 <span className="intro-step__cta">
-                  Get directions <ArrowRight size={17} />
+                  Get directions <ArrowRight size={16} />
                 </span>
               </Link>
             </li>
@@ -276,16 +254,13 @@ export default function Home() {
               <h2 id="services-title">Everyday healthcare in Katunje</h2>
             </div>
             <Link className="text-link" href="/clinic-services">
-              View all clinic information <ArrowUpRight size={17} />
+              View all clinic information <ArrowUpRight size={16} />
             </Link>
           </div>
-          <div className="numbered-grid">
-            {clinicServices.map(({ icon: Icon, title, text }, index) => (
-              <article className="numbered-card" key={title}>
-                <div className="numbered-card__top">
-                  <span>0{index + 1}</span>
-                  <Icon size={25} />
-                </div>
+          <div className="feature-grid">
+            {clinicServices.map(({ icon: Icon, title, text }) => (
+              <article className="feature" key={title}>
+                <Icon size={18} aria-hidden="true" />
                 <h3>{title}</h3>
                 <p>{text}</p>
               </article>
@@ -295,70 +270,57 @@ export default function Home() {
       </section>
 
       <section
-        className="section section--dark"
+        className="section section--tint"
         aria-labelledby="pharmacy-title"
       >
         <div className="container split-feature">
           <div className="split-feature__intro">
-            <span className="kicker kicker--light">Pharmacy in Katunje</span>
-            <h2 id="pharmacy-title">Medicine support without another stop.</h2>
-            <figure className="section-illustration" aria-hidden="true">
-              <span className="section-illustration__orbit" />
-              <img
-                src="/images/illustration-pharmacy.webp"
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width={1254}
-                height={1254}
-              />
-            </figure>
-          </div>
-          <div>
+            <span className="kicker">Pharmacy in Katunje</span>
+            <h2 id="pharmacy-title">Medicine support without another stop</h2>
             <p>
               Visit the in-house pharmacy after your consultation or contact the
               team to check medicine availability before travelling from
               Srijananagar, Sallaghari or elsewhere in Bhaktapur.
             </p>
-            <Link className="button button--light" href="/pharmacy">
-              Explore pharmacy services <ArrowRight size={18} />
+            <Link className="button" href="/pharmacy">
+              Explore pharmacy services <ArrowRight size={16} />
             </Link>
-            <figure className="inline-photo">
-              <img
-                src="/images/pharmacy.webp"
-                alt="Representative organised neighbourhood pharmacy"
-                loading="lazy"
-                decoding="async"
-                width={1536}
-                height={1024}
-              />
-              <figcaption>Representative pharmacy environment.</figcaption>
-            </figure>
           </div>
+          <figure className="inline-photo">
+            <img
+              src="/images/pharmacy.webp"
+              alt="Representative organised neighbourhood pharmacy"
+              loading="lazy"
+              decoding="async"
+              width={1536}
+              height={1024}
+            />
+            <figcaption>Representative pharmacy environment</figcaption>
+          </figure>
         </div>
       </section>
 
       <section className="section" aria-labelledby="trust-title">
         <div className="container">
           <div className="section-heading section-heading--stacked">
-            <span className="kicker">Designed around trust</span>
+            <span className="kicker">Trust</span>
             <h2 id="trust-title">
-              Healthcare information should be easy to verify.
+              Healthcare information should be easy to verify
             </h2>
           </div>
-          <InteractiveTrust />
+          <TrustPoints />
         </div>
       </section>
 
-      <section className="section blog-section" aria-labelledby="blog-title">
+      <section className="section section--tint" aria-labelledby="blog-title">
         <div className="container">
           <div className="section-heading">
             <div>
               <span className="kicker">Health blog</span>
-              <h2 id="blog-title">Practical guidance for everyday health.</h2>
+              <h2 id="blog-title">Practical guidance for everyday health</h2>
             </div>
             <Link className="text-link" href="/blog">
-              View all articles <ArrowUpRight size={17} />
+              View all articles <ArrowUpRight size={16} />
             </Link>
           </div>
           <div className="blog-grid">
@@ -388,7 +350,7 @@ export default function Home() {
                   </h3>
                   <p>{post.excerpt}</p>
                   <Link className="text-link" href={post.href}>
-                    Read article <ArrowUpRight size={17} />
+                    Read article <ArrowUpRight size={16} />
                   </Link>
                 </div>
               </article>
@@ -397,11 +359,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section local-section" aria-labelledby="areas-title">
+      <section className="section" aria-labelledby="areas-title">
         <div className="container local-grid">
           <div className="local-copy">
             <span className="kicker">Areas we serve</span>
-            <h2 id="areas-title">Care close to home.</h2>
+            <h2 id="areas-title">Care close to home</h2>
             <p>
               Convenient local healthcare for families across Katunje and the
               surrounding Bhaktapur communities.
@@ -415,13 +377,13 @@ export default function Home() {
               ))}
             </div>
             <Link className="text-link" href="/contact">
-              View location and directions <ArrowUpRight size={17} />
+              View location and directions <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section faq-section" aria-labelledby="faq-title">
+      <section className="section" aria-labelledby="faq-title">
         <div className="container faq-grid">
           <div>
             <span className="kicker">Common questions</span>

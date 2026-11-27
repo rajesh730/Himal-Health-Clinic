@@ -1,9 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { Figtree, IBM_Plex_Mono } from "next/font/google";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const TITLE = "Himal Health Clinic & Pharmacy in Katunje, Bhaktapur";
+// Figtree for the interface; IBM Plex Mono for times and registration
+// numbers, the "printed schedule" detail used across the site.
+const sans = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const TITLE ="Himal Health Clinic & Pharmacy in Katunje, Bhaktapur";
 const DESCRIPTION =
   "Local clinic and pharmacy in Katunje, Bhaktapur, near Srijananagar and Sallaghari.";
 
@@ -74,7 +91,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#294d7d",
+  themeColor: "#1b3a5f",
   colorScheme: "light",
 };
 
@@ -85,7 +102,11 @@ export default function RootLayout({
     // suppressHydrationWarning: browser extensions (Grammarly, ColorZilla, …)
     // inject attributes on <html>/<body> before hydration. This only ignores
     // attribute mismatches on these two elements, not their children.
-    <html lang={site.language} suppressHydrationWarning>
+    <html
+      lang={site.language}
+      className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <body suppressHydrationWarning>
         <a className="skip-link" href="#main-content">
           Skip to main content
@@ -93,6 +114,7 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />
+        <ScrollReveal />
       </body>
     </html>
   );

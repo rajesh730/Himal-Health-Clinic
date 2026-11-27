@@ -28,7 +28,7 @@ export default function ContactPage() {
       />
       <PageHero
         eyebrow="Contact & location"
-        title="Find the clinic in Katunje, Bhaktapur."
+        title="Find the clinic in Katunje, Bhaktapur"
         description="Use the location details below and confirm the service, doctor schedule and opening time before travelling."
       />
       <EmergencyCallout />
@@ -43,11 +43,11 @@ export default function ContactPage() {
               width={1536}
               height={1024}
             />
-            <figcaption>Representative clinic environment.</figcaption>
+            <figcaption>Representative clinic environment</figcaption>
           </figure>
           <div>
             <span className="kicker">Before you travel</span>
-            <h2>Confirm the service and schedule first.</h2>
+            <h2>Confirm the service and schedule first</h2>
             <p>
               A short confirmation can prevent an unnecessary trip when doctor
               schedules, test availability or public-holiday hours change.
@@ -59,7 +59,7 @@ export default function ContactPage() {
         <div className="container contact-layout">
           <div className="contact-stack">
             <article>
-              <MapPin size={26} />
+              <MapPin size={18} />
               <span>Location</span>
               <h2>{site.location}</h2>
               <p>{site.nearby}, Bhaktapur, Nepal.</p>
@@ -69,13 +69,15 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Open area map <ArrowUpRight size={17} />
+                Open area map <ArrowUpRight size={16} />
               </a>
             </article>
             <article>
-              <Clock3 size={26} />
+              <Clock3 size={18} />
               <span>Opening hours</span>
-              <h2>{site.hours}</h2>
+              <h2>
+                <span className="time">{site.hours}</span>
+              </h2>
               <p>
                 Confirm public-holiday hours and specialist schedules before
                 visiting.
@@ -83,7 +85,7 @@ export default function ContactPage() {
             </article>
           </div>
           <aside className="contact-action-panel">
-            <span className="kicker kicker--light">Contact details</span>
+            <span className="kicker">Contact details</span>
             <h2>Phone and WhatsApp</h2>
             <p>
               Call the clinic to confirm a doctor schedule, service availability
@@ -95,7 +97,7 @@ export default function ContactPage() {
                 href={`tel:${phonesE164[index]}`}
                 key={phone}
               >
-                <Phone size={22} />
+                <Phone size={18} />
                 <span>
                   <small>Clinic phone</small>
                   {phone}
@@ -108,7 +110,7 @@ export default function ContactPage() {
               target="_blank"
               rel="noreferrer"
             >
-              <MessageCircle size={22} />
+              <MessageCircle size={18} />
               <span>
                 <small>WhatsApp</small>Message the clinic
               </span>
@@ -116,11 +118,11 @@ export default function ContactPage() {
           </aside>
         </div>
       </section>
-      <section className="section section--dark nearby-areas">
+      <section className="section section--tint nearby-areas">
         <div className="container nearby-areas__grid">
           <div>
-            <span className="kicker kicker--light">Nearby areas</span>
-            <h2>Care within easy reach.</h2>
+            <span className="kicker">Nearby areas</span>
+            <h2>Care within easy reach</h2>
             <p>
               Conveniently located for patients in Katunje and nearby Bhaktapur
               communities.
@@ -128,7 +130,7 @@ export default function ContactPage() {
           </div>
           <div className="nearby-areas__list">
             <span>We welcome patients from</span>
-            <div className="area-list area-list--dark">
+            <div className="area-list">
               {localAreas.map((area) => (
                 <span key={area}>{area}</span>
               ))}

@@ -1,6 +1,7 @@
-import { ArrowUpRight, MapPin, Menu, Phone, Siren } from "lucide-react";
+import { ArrowUpRight, MapPin, Menu, Phone } from "lucide-react";
 import Link from "next/link";
 import { nav, phonesE164, site } from "@/lib/site";
+import { HeroRidge } from "@/components/hero-ridge";
 import {
   DesktopNavigation,
   MobileNavigation,
@@ -9,9 +10,8 @@ import {
 export function Logo() {
   return (
     <Link className="logo" href="/" aria-label={`${site.name} home`}>
-      {/* The clinic mark is painted from /logo-mark.png as a CSS mask so it
-          inherits `currentColor` — white on the header badge, deep teal on the
-          reversed footer badge. */}
+      {/* The clinic mark is painted from /logo-mark.png as a CSS mask, so it
+          takes the accent in the header and paper colour in the footer. */}
       <span className="logo-mark" aria-hidden="true" />
       <span>
         {site.shortName}
@@ -21,8 +21,8 @@ export function Logo() {
   );
 }
 
-function EmergencyPulse() {
-  return <span className="emergency-pulse" aria-hidden="true" />;
+function EmergencyDot() {
+  return <span className="emergency-dot" aria-hidden="true" />;
 }
 
 export function EmergencyCallout() {
@@ -30,26 +30,21 @@ export function EmergencyCallout() {
     <section className="emergency-callout" aria-labelledby="emergency-title">
       <div className="container">
         <div className="emergency-card">
-          <div className="emergency-card__intro">
-            <span className="emergency-card__icon" aria-hidden="true">
-              <Siren size={26} />
+          <div>
+            <span className="emergency-card__kicker">
+              <EmergencyDot /> Emergency services
             </span>
-            <div>
-              <span className="kicker kicker--light emergency-card__kicker">
-                <EmergencyPulse /> Emergency services
-              </span>
-              <h2 id="emergency-title">Urgent care when it matters most.</h2>
-              <p>
-                Himal Health Clinic provides emergency services. Call ahead so
-                our team can prepare for your arrival.
-              </p>
-            </div>
+            <h2 id="emergency-title">Call ahead for urgent care</h2>
+            <p>
+              Himal Health Clinic provides emergency services. Call ahead so
+              our team can prepare for your arrival.
+            </p>
           </div>
           <div className="emergency-card__phones">
             {site.phones.map((phone, index) => (
               <a href={`tel:${phonesE164[index]}`} key={phone}>
                 <span className="emergency-card__phone-icon" aria-hidden="true">
-                  <Phone size={19} />
+                  <Phone size={18} />
                 </span>
                 <span className="emergency-card__phone-text">
                   <small>Emergency line {index + 1}</small>
@@ -57,7 +52,7 @@ export function EmergencyCallout() {
                 </span>
                 <ArrowUpRight
                   className="emergency-card__arrow"
-                  size={18}
+                  size={16}
                   aria-hidden="true"
                 />
               </a>
@@ -76,7 +71,7 @@ export function SiteHeader() {
         <div className="container location-bar__inner">
           <div className="location-bar__emergency">
             <span className="location-bar__emergency-label">
-              <EmergencyPulse /> Emergency
+              <EmergencyDot /> Emergency
             </span>
             <span className="location-bar__phones">
               {site.phones.map((phone, index) => (
@@ -92,19 +87,10 @@ export function SiteHeader() {
             target="_blank"
             rel="noreferrer"
           >
-            <MapPin size={15} aria-hidden="true" />
+            <MapPin size={14} aria-hidden="true" />
             <span>
-              {site.location}
-              <span className="location-bar__nearby">
-                {" "}
-                · {site.nearby}
-              </span>
+              {site.location} · {site.nearby}
             </span>
-            <ArrowUpRight
-              className="location-bar__arrow"
-              size={14}
-              aria-hidden="true"
-            />
           </a>
         </div>
       </div>
@@ -112,12 +98,15 @@ export function SiteHeader() {
         <div className="container nav-shell">
           <Logo />
           <DesktopNavigation />
-          <a className="button button--compact" href={`tel:${phonesE164[0]}`}>
-            <Phone size={17} /> Call clinic
+          <a
+            className="button button--compact button--on-brand"
+            href={`tel:${phonesE164[0]}`}
+          >
+            <Phone size={16} /> Call clinic
           </a>
           <details className="mobile-menu">
             <summary>
-              <Menu size={22} />
+              <Menu size={18} />
               <span>Menu</span>
             </summary>
             <MobileNavigation />
@@ -150,13 +139,16 @@ export function SiteFooter() {
         <div>
           <strong>Visit</strong>
           <p>{site.address}</p>
+          <p>
+            <span className="time">{site.hours}</span>
+          </p>
           <a
             className="footer-map"
             href={site.mapUrl}
             target="_blank"
             rel="noreferrer"
           >
-            Open area map <ArrowUpRight size={15} />
+            Open area map <ArrowUpRight size={16} />
           </a>
         </div>
       </div>
@@ -169,11 +161,22 @@ export function SiteFooter() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Designed &amp; developed by Infobytes Nepal <ArrowUpRight size={13} />
+          Designed &amp; developed by Infobytes Nepal <ArrowUpRight size={14} />
         </a>
       </div>
-      <a className="mobile-cta" href={`tel:${phonesE164[0]}`}>
-        <EmergencyPulse /> Emergency · Call {site.phones[0]}
+      {/* Always on screen, on every page and width: the emergency line. */}
+      <a
+        className="emergency-float"
+        href={`tel:${phonesE164[0]}`}
+        aria-label={`Emergency: call ${site.phones[0]}`}
+      >
+        <span className="emergency-float__icon" aria-hidden="true">
+          <Phone size={18} />
+        </span>
+        <span className="emergency-float__text">
+          <strong>Emergency</strong>
+          <span>{site.phones[0]}</span>
+        </span>
       </a>
     </footer>
   );
@@ -183,15 +186,13 @@ export function PageHero({
   eyebrow,
   title,
   description,
-  invert = false,
 }: {
   eyebrow: string;
   title: string;
   description: string;
-  invert?: boolean;
 }) {
   return (
-    <section className={`page-hero${invert ? " page-hero--dark" : ""}`}>
+    <section className="page-hero">
       <div className="container page-hero__grid">
         <span className="kicker">{eyebrow}</span>
         <div>
@@ -199,6 +200,7 @@ export function PageHero({
           <p>{description}</p>
         </div>
       </div>
+      <HeroRidge />
     </section>
   );
 }
@@ -208,7 +210,7 @@ export function ContactBand() {
     <section className="contact-band">
       <div className="container contact-band__grid">
         <div>
-          <span className="kicker kicker--light">Local care in Bhaktapur</span>
+          <span className="kicker">Local care in Bhaktapur</span>
           <h2>Need to confirm a service or doctor schedule?</h2>
         </div>
         <div>
@@ -216,8 +218,8 @@ export function ContactBand() {
             Check availability before travelling, especially for visiting
             specialists, tests and vaccinations.
           </p>
-          <Link className="button button--light" href="/contact">
-            View contact details <ArrowUpRight size={18} />
+          <Link className="button button--on-brand" href="/contact">
+            View contact details <ArrowUpRight size={16} />
           </Link>
         </div>
       </div>

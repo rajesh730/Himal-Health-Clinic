@@ -21,7 +21,7 @@ export const site = {
   address: "Suryabinayak Municipality Ward No. 5, Katunje, Bhaktapur, Nepal",
   pan: "128929655",
   phones: ["9761626876", "9814222828"],
-  hours: "Sunday–Friday · 7:00 AM–8:00 PM",
+  hours: "Open every day · 6:00 AM–10:00 PM",
   url: siteUrl,
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=Katunje+Srijananagar+Sallaghari+Bhaktapur+Nepal",
@@ -46,9 +46,10 @@ export const openingHours = {
     "Wednesday",
     "Thursday",
     "Friday",
+    "Saturday",
   ] as const,
-  opens: "07:00",
-  closes: "20:00",
+  opens: "06:00",
+  closes: "22:00",
 };
 
 /**

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, BadgeCheck, CalendarDays } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ContactBand, PageHero } from "@/components/site-shell";
 import { PageSchema } from "@/components/structured-data";
@@ -44,14 +44,14 @@ export default function DoctorsPage() {
       />
       <PageHero
         eyebrow="Medical team · Bhaktapur"
-        title="Know who is available before you visit."
+        title="Know who is available before you visit"
         description="Doctor schedules can change. Confirm the current clinician and consultation time before travelling to the Katunje clinic."
       />
       <section className="image-feature-section image-feature-section--compact">
         <div className="container image-feature image-feature--text-only">
           <div>
             <span className="kicker">Care through communication</span>
-            <h2>Good consultation starts with listening.</h2>
+            <h2>Good consultation starts with listening</h2>
             <p>
               Bring your questions, current medicines and recent health
               information so the clinician can understand the situation clearly.
@@ -60,34 +60,33 @@ export default function DoctorsPage() {
         </div>
       </section>
       <section className="section section--tight">
-        <div className="container doctor-roster">
-          {doctors.map((doctor, index) => (
-            <article className="doctor-card" key={doctor.name}>
-              <div className="doctor-card__number">0{index + 1}</div>
-              <div className="doctor-card__main">
-                <span className="kicker">{doctor.specialty}</span>
-                <h2>{doctor.name}</h2>
-                <p className="doctor-card__credentials">
-                  {doctor.credentials} · {doctor.hospital}
-                </p>
-                <div className="role-meta">
-                  <span>
-                    <CalendarDays size={17} /> {doctor.schedule}
-                  </span>
-                  <span>
-                    <BadgeCheck size={17} /> {doctor.registration}
-                  </span>
+        <div className="container">
+          <div className="doctor-roster">
+            <div className="doctor-roster__head" aria-hidden="true">
+              <span>Doctor</span>
+              <span>Specialty</span>
+              <span>Registration</span>
+            </div>
+            {doctors.map((doctor) => (
+              <article className="doctor-card" key={doctor.registration}>
+                <div className="doctor-card__main">
+                  <h2>{doctor.name}</h2>
+                  <p className="doctor-card__credentials">
+                    {doctor.credentials} · {doctor.hospital}
+                  </p>
                 </div>
-              </div>
-            </article>
-          ))}
+                <p className="doctor-card__specialty">{doctor.specialty}</p>
+                <p className="doctor-card__reg time">{doctor.registration}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
-      <section className="section section--dark">
+      <section className="section section--tint">
         <div className="container content-grid">
           <div>
-            <span className="kicker kicker--light">Patient trust</span>
-            <h2>Doctor profiles should contain facts, not marketing claims.</h2>
+            <span className="kicker">Patient trust</span>
+            <h2>Doctor profiles should contain facts, not marketing claims</h2>
           </div>
           <div>
             <p>
@@ -96,8 +95,8 @@ export default function DoctorsPage() {
               number and current schedule. These details must be verified before
               they appear on the website.
             </p>
-            <Link className="button button--light" href="/contact">
-              Confirm today’s schedule <ArrowRight size={18} />
+            <Link className="button" href="/contact">
+              Confirm today’s schedule <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -105,9 +104,9 @@ export default function DoctorsPage() {
       <section className="section">
         <div className="container editorial-callout">
           <span>Planning a visit?</span>
-          <h2>Tell the clinic which type of doctor you need.</h2>
+          <h2>Tell the clinic which type of doctor you need</h2>
           <Link className="button" href="/clinic-services">
-            Review clinic services <ArrowRight size={18} />
+            Review clinic services <ArrowRight size={16} />
           </Link>
         </div>
       </section>

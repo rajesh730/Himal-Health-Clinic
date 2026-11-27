@@ -43,18 +43,18 @@ export function BlogArticle({ post, children }: { post: BlogPost; children: Reac
         <header className="blog-article__header">
           <div className="container blog-article__header-grid">
             <div>
-              <Link className="text-link" href="/blog"><ArrowLeft size={17} /> All health articles</Link>
+              <Link className="text-link" href="/blog"><ArrowLeft size={16} /> All health articles</Link>
               <span className="kicker">{post.category}</span>
               <h1>{post.title}</h1>
               <p>{post.excerpt}</p>
               <div className="blog-meta"><span>{post.dateLabel}</span><span>{post.readTime}</span></div>
             </div>
-            <figure className="blog-article__visual"><img src={post.image} alt={post.imageAlt} width={1254} height={1254} /><figcaption>Health education illustration.</figcaption></figure>
+            <figure className="blog-article__visual"><img src={post.image} alt={post.imageAlt} width={1254} height={1254} /><figcaption>Health education illustration</figcaption></figure>
           </div>
         </header>
         <div className="container blog-article__body">
           <div className="blog-copy">{children}</div>
-          <aside className="blog-disclaimer"><strong>Important</strong><p>This article provides general health information. It does not replace an individual assessment, diagnosis or treatment from a qualified health professional.</p><Link className="button" href="/contact">Contact the clinic <ArrowRight size={17} /></Link></aside>
+          <aside className="blog-disclaimer"><strong>Important</strong><p>This article provides general health information. It does not replace an individual assessment, diagnosis or treatment from a qualified health professional.</p><Link className="button" href="/contact">Contact the clinic <ArrowRight size={16} /></Link></aside>
         </div>
       </article>
     </>
