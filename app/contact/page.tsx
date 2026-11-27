@@ -99,20 +99,20 @@ export default function ContactPage() {
               >
                 <Phone size={18} />
                 <span>
-                  <small>Clinic phone</small>
+                  <small>{index === 0 ? "Primary phone" : "Secondary phone"}</small>
                   {phone}
                 </span>
               </a>
             ))}
             <a
               className="pending-contact"
-              href={`https://wa.me/977${site.phones[0]}`}
+              href={`https://wa.me/977${site.whatsapp}`}
               target="_blank"
               rel="noreferrer"
             >
               <MessageCircle size={18} />
               <span>
-                <small>WhatsApp</small>Message the clinic
+                <small>WhatsApp · {site.whatsapp}</small>Message the clinic
               </span>
             </a>
           </aside>
