@@ -98,12 +98,6 @@ export function SiteHeader() {
         <div className="container nav-shell">
           <Logo />
           <DesktopNavigation />
-          <a
-            className="button button--compact button--on-brand"
-            href={`tel:${phonesE164[0]}`}
-          >
-            <Phone size={16} /> Call clinic
-          </a>
           <details className="mobile-menu">
             <summary>
               <Menu size={18} />

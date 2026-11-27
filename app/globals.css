@@ -1826,8 +1826,7 @@ main .contact-action-panel h2 {
   .location-bar__inner {
     justify-content: center;
   }
-  .desktop-nav,
-  .nav-shell > .button {
+  .desktop-nav {
     display: none;
   }
   .nav-shell {
