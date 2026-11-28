@@ -72,9 +72,16 @@ export const postalAddress = {
   addressCountry: "NP",
 };
 
+/**
+ * The website's doctor profiles. `clinicnpId` links each one to its record in
+ * ClinicNP (the clinic's booking system), matched by name from ClinicNP's
+ * `GET /doctors`. ClinicNP spells some names differently (Sanjeet Kumar Shah,
+ * Ajila Prajapati, Rajendra Silpakar); confirm those with the clinic.
+ */
 export const doctors = [
   {
     name: "Dr. Sanjit Kumar Sah",
+    clinicnpId: "01M2WGQCSAHENMBD5HZV27427C",
     credentials: "MBBS, MD",
     specialty: "Consultant Cardiologist",
     registration: "NMC No. 6584",
@@ -83,6 +90,7 @@ export const doctors = [
   },
   {
     name: "Dr. Suresh Kayastha",
+    clinicnpId: "01M2WGR60GVJVM2H9V0EXDTRKH",
     credentials: "MBBS, MD",
     specialty: "General Physician",
     registration: "NMC No. 8513",
@@ -91,6 +99,7 @@ export const doctors = [
   },
   {
     name: "Dr. Ajala Prajapati",
+    clinicnpId: "01M2WGEQEPPBK8AMXTF902Y4JM",
     credentials: "MBBS, MD",
     specialty: "Consultant Gynecologist",
     registration: "NMC No. 6562",
@@ -99,6 +108,7 @@ export const doctors = [
   },
   {
     name: "Dr. Radheshyam Gupta",
+    clinicnpId: "01M2WGGK5D8E06HTC4XKHA6PHW",
     credentials: "MBBS, MS, PhD, FCAM, TCOM (TX, USA)",
     specialty: "Urologist, Kidney Transplant and Robotic Oncologic Surgeon",
     registration: "NMC No. 10793",
@@ -107,6 +117,7 @@ export const doctors = [
   },
   {
     name: "Dr. Prashant Paudyal",
+    clinicnpId: "01M2WGHCMV2JN9BXFRTY6J7MZH",
     credentials: "MBBS, MS",
     specialty: "ENT Surgeon",
     registration: "NMC No. 14512",
@@ -115,6 +126,7 @@ export const doctors = [
   },
   {
     name: "Dr. Sunil Kumar Yadav",
+    clinicnpId: "01M2WGJ9DF1C99KV6Q7RX803B0",
     credentials: "MBBS, MS",
     specialty: "Orthopedic Surgeon",
     registration: "NMC No. 14531",
@@ -123,6 +135,7 @@ export const doctors = [
   },
   {
     name: "Dr. Manoj Lal Chaudhary",
+    clinicnpId: "01M24ZS8N43W0Z1C3JX6CED425",
     credentials: "MBBS, MD",
     specialty: "Consultant Dermatologist & Venereologist",
     registration: "NMC No. 14901",
@@ -131,6 +144,7 @@ export const doctors = [
   },
   {
     name: "Dr. Rajendra Silpaker",
+    clinicnpId: "01M2WGKNGASD7VRWK2WHYYY9RV",
     credentials: "MBBS, MD",
     specialty: "Consultant Pediatrician",
     registration: "NMC No. 18311",
@@ -139,6 +153,7 @@ export const doctors = [
   },
   {
     name: "Dr. Ashok Kumar Shah",
+    clinicnpId: "01M2WGMKQD8XQKWF24KXDJ9VSW",
     credentials: "MBBS",
     specialty: "General Physician",
     registration: "NMC No. 24741",
@@ -149,6 +164,7 @@ export const doctors = [
 
 export const nav = [
   { href: "/", label: "Home" },
+  { href: "/book", label: "Book appointment" },
   { href: "/doctors", label: "Doctors" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },

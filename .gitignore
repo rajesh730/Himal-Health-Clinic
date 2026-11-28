@@ -32,6 +32,10 @@ yarn-error.log*
 .env*
 !.env.example
 
+# Contains a live third-party API credential. Keep this local reference out of
+# commits; production credentials belong in the hosting provider's environment.
+WEBSITE-INTEGRATION-MANUAL.md
+
 # local tooling and credentials
 /.jetro/
 /.mcp.json

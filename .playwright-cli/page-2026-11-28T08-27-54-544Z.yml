@@ -1,0 +1,84 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: Emergency
+      - generic [ref=e8]:
+        - link "9814222858" [ref=e9] [cursor=pointer]:
+          - /url: tel:+9779814222858
+        - link "9761626876" [ref=e10] [cursor=pointer]:
+          - /url: tel:+9779761626876
+    - link "Ward No. 5, Katunje, Bhaktapur · Near Suryabinayak and Sallaghari" [ref=e11] [cursor=pointer]:
+      - /url: https://www.google.com/maps/search/?api=1&query=Katunje+Srijananagar+Sallaghari+Bhaktapur+Nepal
+  - banner [ref=e16]:
+    - generic [ref=e17]:
+      - link "Himal Health Clinic Pvt. Ltd. home" [ref=e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e20]:
+          - text: Himal
+          - generic [ref=e21]: Health Clinic · Pharmacy
+      - navigation "Primary navigation" [ref=e22]:
+        - link "Home" [ref=e23] [cursor=pointer]:
+          - /url: /
+        - link "Book appointment" [ref=e24] [cursor=pointer]:
+          - /url: /book
+        - link "Doctors" [ref=e25] [cursor=pointer]:
+          - /url: /doctors
+        - link "About" [ref=e26] [cursor=pointer]:
+          - /url: /about
+        - link "Blog" [ref=e27] [cursor=pointer]:
+          - /url: /blog
+        - link "Contact" [ref=e28] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e29]:
+    - generic [ref=e31]:
+      - generic [ref=e32]: Appointment request
+      - generic [ref=e33]:
+        - heading "Check your booking status" [level=1] [ref=e34]
+        - paragraph [ref=e35]: Enter the booking code from your request. This page never displays patient contact details.
+    - generic [ref=e39]:
+      - generic [ref=e40]: Booking code
+      - generic [ref=e41]:
+        - textbox "Booking code" [ref=e42]:
+          - /placeholder: e.g. W7K3Q9DX
+          - text: W7K3Q9DX
+        - button "Check status" [ref=e43] [cursor=pointer]
+      - paragraph [ref=e47]: You received this code after sending your request.
+  - contentinfo [ref=e48]:
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - link "Himal Health Clinic Pvt. Ltd. home" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e53]:
+            - text: Himal
+            - generic [ref=e54]: Health Clinic · Pharmacy
+        - paragraph [ref=e55]: Himal Health Clinic and pharmacy support for Katunje, Suryabinayak, Sallaghari and nearby Bhaktapur communities.
+      - generic [ref=e56]:
+        - strong [ref=e57]: Explore
+        - link "Book appointment" [ref=e58] [cursor=pointer]:
+          - /url: /book
+        - link "Doctors" [ref=e59] [cursor=pointer]:
+          - /url: /doctors
+        - link "About" [ref=e60] [cursor=pointer]:
+          - /url: /about
+        - link "Blog" [ref=e61] [cursor=pointer]:
+          - /url: /blog
+        - link "Contact" [ref=e62] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e63]:
+        - strong [ref=e64]: Visit
+        - paragraph [ref=e65]: Suryabinayak Municipality Ward No. 5, Katunje, Bhaktapur, Nepal
+        - paragraph [ref=e66]: Open every day · 6:00 AM–10:00 PM
+        - link "Open area map" [ref=e67] [cursor=pointer]:
+          - /url: https://www.google.com/maps/search/?api=1&query=Katunje+Srijananagar+Sallaghari+Bhaktapur+Nepal
+    - generic [ref=e71]:
+      - generic [ref=e72]: © 2026 Himal Health Clinic Pvt. Ltd.
+      - generic [ref=e73]: Emergency services available · 9814222858 / 9761626876
+      - link "Designed & developed by Infobytes Nepal" [ref=e74] [cursor=pointer]:
+        - /url: https://www.infobytesnepal.com/
+    - 'link "Emergency: call 9814222858" [ref=e78] [cursor=pointer]':
+      - /url: tel:+9779814222858
+      - generic [ref=e82]:
+        - strong [ref=e83]: Emergency
+        - generic [ref=e84]: "9814222858"

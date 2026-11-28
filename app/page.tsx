@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import {
   ArrowRight,
   ArrowUpRight,
+  CalendarDays,
   Clock3,
   MapPin,
-  Phone,
   Stethoscope,
 } from "lucide-react";
 import Link from "next/link";
@@ -40,7 +40,7 @@ const faq = [
   },
   {
     q: "Should I confirm the doctor schedule before visiting?",
-    a: "Yes. Visiting specialists, tests and vaccination availability can change, so confirm the current schedule before travelling.",
+    a: "Yes. Choose from the available doctor times online, then send an appointment request. The clinic still needs to confirm the request before it is booked.",
   },
   {
     q: "Does the clinic provide emergency care?",
@@ -151,7 +151,10 @@ export default function Home() {
               Sallaghari.
             </p>
             <div className="action-row">
-              <Link className="button button--on-brand" href="/clinic-services">
+              <Link className="button button--on-brand" href="/book">
+                <CalendarDays size={16} /> Book an appointment
+              </Link>
+              <Link className="button button--ghost-on-brand" href="/clinic-services">
                 Explore clinic services <ArrowRight size={16} />
               </Link>
               <Link className="button button--ghost-on-brand" href="/contact">
@@ -211,21 +214,24 @@ export default function Home() {
               </Link>
             </li>
             <li>
-              <a className="intro-step" href={`tel:${phonesE164[0]}`}>
+              <Link className="intro-step" href="/book">
                 <span className="intro-step__top">
                   <span className="intro-step__num">Step 2</span>
-                  <Phone size={18} aria-hidden="true" />
+                  <CalendarDays size={18} aria-hidden="true" />
                 </span>
-                <h3>Confirm your visit</h3>
-                <p>Call to check today’s doctor schedule before you travel.</p>
+                <h3>Request an appointment</h3>
+                <p>
+                  Select a doctor, a free time and your details. The clinic will
+                  confirm your request.
+                </p>
                 <span className="intro-step__meta">
                   <Clock3 size={16} aria-hidden="true" />
-                  <span className="time">{site.hours}</span>
+                  <span className="time">Free times shown live</span>
                 </span>
                 <span className="intro-step__cta">
-                  Call {site.phones[0]} <ArrowRight size={16} />
+                  Book online <ArrowRight size={16} />
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
               <Link className="intro-step" href="/contact">

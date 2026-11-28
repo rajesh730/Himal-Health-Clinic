@@ -1,0 +1,168 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: Emergency
+      - generic [ref=e8]:
+        - link "9814222858" [ref=e9] [cursor=pointer]:
+          - /url: tel:+9779814222858
+        - link "9761626876" [ref=e10] [cursor=pointer]:
+          - /url: tel:+9779761626876
+    - link "Ward No. 5, Katunje, Bhaktapur · Near Suryabinayak and Sallaghari" [ref=e11] [cursor=pointer]:
+      - /url: https://www.google.com/maps/search/?api=1&query=Katunje+Srijananagar+Sallaghari+Bhaktapur+Nepal
+  - banner [ref=e16]:
+    - generic [ref=e17]:
+      - link "Himal Health Clinic Pvt. Ltd. home" [ref=e18] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e20]:
+          - text: Himal
+          - generic [ref=e21]: Health Clinic · Pharmacy
+      - navigation "Primary navigation" [ref=e22]:
+        - link "Home" [ref=e23] [cursor=pointer]:
+          - /url: /
+        - link "Book appointment" [ref=e24] [cursor=pointer]:
+          - /url: /book
+        - link "Doctors" [ref=e25] [cursor=pointer]:
+          - /url: /doctors
+        - link "About" [ref=e26] [cursor=pointer]:
+          - /url: /about
+        - link "Blog" [ref=e27] [cursor=pointer]:
+          - /url: /blog
+        - link "Contact" [ref=e28] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e29]:
+    - generic [ref=e31]:
+      - generic [ref=e32]: Online appointment request
+      - generic [ref=e33]:
+        - heading "Choose a doctor and request a time" [level=1] [ref=e34]
+        - paragraph [ref=e35]: Available times come directly from the clinic system. Your request is confirmed only when the clinic accepts it.
+    - generic [ref=e37]:
+      - complementary [ref=e38]:
+        - generic [ref=e39]: How online booking works
+        - heading "Send a request in two simple steps" [level=2] [ref=e40]
+        - list [ref=e41]:
+          - listitem [ref=e42]:
+            - generic [ref=e43]: "1"
+            - generic [ref=e44]:
+              - strong [ref=e45]: Choose a free time
+              - paragraph [ref=e46]: Select a doctor, date and an available 15-minute slot.
+          - listitem [ref=e47]:
+            - generic [ref=e48]: "2"
+            - generic [ref=e49]:
+              - strong [ref=e50]: Receive your booking code
+              - paragraph [ref=e51]: Keep it to check the request while the clinic confirms it.
+        - paragraph [ref=e55]: Do not use online booking for an emergency. Call the clinic straight away for urgent care.
+        - link "Call 9814222858" [ref=e56] [cursor=pointer]:
+          - /url: tel:+9779814222858
+      - generic [ref=e59]:
+        - group "1 Doctor and time" [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e62]: "1"
+            - text: Doctor and time
+          - generic [ref=e63]:
+            - generic [ref=e64]: Doctor
+            - combobox "Doctor" [ref=e65]:
+              - option "Choose a doctor" [selected]
+              - option "Dr. Abhishek Deo — General Physician"
+              - option "Dr. Ajila Prajapati — Consultant Gyanecologist"
+              - option "Dr. Anup Shrestha — General Surgeon"
+              - option "Dr. Ashok Kumar Shah — General Physician"
+              - option "Dr. Manoj Lal Chaudhary — Dermatology & Venerelogist"
+              - option "Dr. Prajol K.C. — Consultant Radiologist"
+              - option "Dr. Prashant Paudyal — ENT Surgeon"
+              - option "Dr. Radheshyam Gupta — Urologist"
+              - option "Dr. Rajendra Silpakar — Consultant Pediatrician"
+              - option "Dr. Sanjeet Kumar Shah — CTVS Surgeon"
+              - option "Dr. Sanju Bhandari — Consultant Dermatologist"
+              - option "Dr. Sarita Sitaula — Consultant Gynaecologist"
+              - option "Dr. Sunil Kumar Yadav — Orthopedic Surgeon"
+              - option "Dr. Suresh Kayastha — Senior Physician"
+              - option "Dr. Suvekchaya Gautam — Consultant Psychiatrist"
+              - option "Dr. Utsab Rai — Consultant Physician"
+          - generic [ref=e66]:
+            - generic [ref=e67]: Date
+            - textbox "Date" [ref=e68]: 2026-11-28
+            - paragraph [ref=e69]: Sat, 28 Nov 2026Book from 3 hours ahead up to 30 days ahead.
+          - group "Time" [ref=e70]:
+            - paragraph [ref=e72]: Choose a doctor to see free times.
+        - group "2 Patient details" [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: "2"
+            - text: Patient details
+          - generic [ref=e76]:
+            - generic [ref=e77]: Full name
+            - textbox "Full name" [ref=e78]
+          - generic [ref=e79]:
+            - generic [ref=e80]: Mobile number
+            - textbox "Mobile number" [ref=e81]:
+              - /placeholder: 98XXXXXXXX
+            - paragraph [ref=e82]: A Nepali mobile, not a landline. The confirmation SMS goes here.
+          - generic [ref=e83]:
+            - radiogroup "Sex" [ref=e84]:
+              - generic [ref=e86]:
+                - generic [ref=e87] [cursor=pointer]:
+                  - radio "Female" [ref=e88]
+                  - generic [ref=e89]: Female
+                - generic [ref=e90] [cursor=pointer]:
+                  - radio "Male" [ref=e91]
+                  - generic [ref=e92]: Male
+                - generic [ref=e93] [cursor=pointer]:
+                  - radio "Other" [ref=e94]
+                  - generic [ref=e95]: Other
+            - generic [ref=e96]:
+              - generic [ref=e97]: Age optional
+              - generic [ref=e98]:
+                - textbox "Age optional" [ref=e99]
+                - combobox "Age unit" [ref=e100]:
+                  - option "years" [selected]
+                  - option "months"
+                  - option "days"
+          - generic [ref=e101]:
+            - generic [ref=e102]: Address optional
+            - textbox "Address optional" [ref=e103]:
+              - /placeholder: e.g. Katunje, Bhaktapur
+          - generic [ref=e104]:
+            - generic [ref=e105]: Reason for visit optional
+            - textbox "Reason for visit optional" [ref=e106]
+            - paragraph [ref=e107]: 0/300
+        - generic [ref=e108]:
+          - button "Request appointment" [ref=e109] [cursor=pointer]
+          - paragraph [ref=e112]: The clinic confirms every request. It isn’t booked until they do.
+  - contentinfo [ref=e113]:
+    - generic [ref=e114]:
+      - generic [ref=e115]:
+        - link "Himal Health Clinic Pvt. Ltd. home" [ref=e116] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e118]:
+            - text: Himal
+            - generic [ref=e119]: Health Clinic · Pharmacy
+        - paragraph [ref=e120]: Himal Health Clinic and pharmacy support for Katunje, Suryabinayak, Sallaghari and nearby Bhaktapur communities.
+      - generic [ref=e121]:
+        - strong [ref=e122]: Explore
+        - link "Book appointment" [ref=e123] [cursor=pointer]:
+          - /url: /book
+        - link "Doctors" [ref=e124] [cursor=pointer]:
+          - /url: /doctors
+        - link "About" [ref=e125] [cursor=pointer]:
+          - /url: /about
+        - link "Blog" [ref=e126] [cursor=pointer]:
+          - /url: /blog
+        - link "Contact" [ref=e127] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e128]:
+        - strong [ref=e129]: Visit
+        - paragraph [ref=e130]: Suryabinayak Municipality Ward No. 5, Katunje, Bhaktapur, Nepal
+        - paragraph [ref=e131]: Open every day · 6:00 AM–10:00 PM
+        - link "Open area map" [ref=e132] [cursor=pointer]:
+          - /url: https://www.google.com/maps/search/?api=1&query=Katunje+Srijananagar+Sallaghari+Bhaktapur+Nepal
+    - generic [ref=e136]:
+      - generic [ref=e137]: © 2026 Himal Health Clinic Pvt. Ltd.
+      - generic [ref=e138]: Emergency services available · 9814222858 / 9761626876
+      - link "Designed & developed by Infobytes Nepal" [ref=e139] [cursor=pointer]:
+        - /url: https://www.infobytesnepal.com/
+    - 'link "Emergency: call 9814222858" [ref=e143] [cursor=pointer]':
+      - /url: tel:+9779814222858
+      - generic [ref=e147]:
+        - strong [ref=e148]: Emergency
+        - generic [ref=e149]: "9814222858"
