@@ -1803,7 +1803,7 @@ main .blog-card h3 {
 .doctor-roster__head,
 .doctor-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr) 140px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr) 140px 136px;
   gap: 24px;
   align-items: center;
   padding: 16px 24px;
@@ -1814,6 +1814,7 @@ main .blog-card h3 {
   color: var(--text-3);
   font-size: 13px;
 }
+.doctor-roster__head span:nth-child(3),
 .doctor-roster__head span:last-child {
   text-align: right;
 }
@@ -1839,6 +1840,31 @@ main .doctor-card h2 {
   color: var(--text-3);
   font-size: 13px;
   text-align: right;
+}
+.doctor-card__schedule {
+  margin-top: 5px;
+  color: var(--text-3);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.doctor-card__book {
+  justify-self: end;
+  white-space: nowrap;
+}
+.doctor-card__paused {
+  justify-self: end;
+  color: var(--text-3);
+  font-size: 13px;
+}
+.doctor-roster__notice {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+.doctor-roster__notice p {
+  max-width: 44rem;
+  margin-top: 10px;
 }
 
 /* ---------- Clinic services ---------- */

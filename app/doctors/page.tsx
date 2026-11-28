@@ -3,49 +3,81 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ContactBand, PageHero } from "@/components/site-shell";
 import { PageSchema } from "@/components/structured-data";
-import { doctors, postalAddress, site } from "@/lib/site";
+import type { BookingDoctor, DoctorsResponse } from "@/lib/booking-types";
+import { clinicnp } from "@/lib/clinicnp";
+import { doctors as websiteDoctors, postalAddress, site } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Doctors in Katunje, Bhaktapur",
   description:
-    "Find doctor and visiting specialist information for Himal Health Clinic in Katunje, Bhaktapur.",
+    "Find current doctor and visiting specialist information for Himal Health Clinic in Katunje, Bhaktapur.",
   alternates: { canonical: "/doctors" },
 };
 
-// Each clinician is published as a `Physician` tied to the clinic entity, so
-// search engines can associate the specialty and NMC registration with the
-// practice rather than treating the roster as loose text.
-const rosterSchema = {
-  "@context": "https://schema.org",
-  "@graph": doctors.map((doctor) => ({
-    "@type": "Physician",
-    "@id": `${site.url}/doctors/#${doctor.registration.replace(/\W+/g, "-").toLowerCase()}`,
-    name: doctor.name,
-    medicalSpecialty: doctor.specialty,
-    identifier: doctor.registration,
-    address: postalAddress,
-    worksFor: { "@id": `${site.url}/#clinic` },
-    memberOf: { "@type": "MedicalOrganization", name: doctor.hospital },
-  })),
-};
+type WebsiteDoctor = (typeof websiteDoctors)[number];
 
-export default function DoctorsPage() {
+/**
+ * ClinicNP is the live source for the public roster. The website's verified
+ * NMC registration and hospital details are supplementary and are joined by
+ * ClinicNP id, never by a doctor name that could be spelled differently.
+ */
+const websiteDoctorByClinicId = new Map<string, WebsiteDoctor>(
+  websiteDoctors.map((doctor) => [doctor.clinicnpId, doctor]),
+);
+
+function rosterSchema(doctors: BookingDoctor[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": doctors.map((doctor) => {
+      const websiteDoctor = websiteDoctorByClinicId.get(doctor.id);
+      return {
+        "@type": "Physician",
+        "@id": `${site.url}/doctors/#${doctor.id}`,
+        name: doctor.name,
+        medicalSpecialty: doctor.specialty,
+        ...(websiteDoctor?.registration
+          ? { identifier: websiteDoctor.registration }
+          : {}),
+        address: postalAddress,
+        worksFor: { "@id": `${site.url}/#clinic` },
+        ...(websiteDoctor?.hospital
+          ? {
+              memberOf: {
+                "@type": "MedicalOrganization",
+                name: websiteDoctor.hospital,
+              },
+            }
+          : {}),
+      };
+    }),
+  };
+}
+
+export default async function DoctorsPage() {
+  const { data } = await clinicnp<DoctorsResponse>("/doctors");
+  const liveDoctors = data.ok ? data.doctors : [];
+  const bookingOpen = data.ok && data.accepting;
+
   return (
     <>
       <PageSchema
         title="Doctors in Katunje, Bhaktapur"
-        description="Doctor and visiting specialist information for Himal Health Clinic in Katunje, Bhaktapur."
+        description="Current doctor and visiting specialist information for Himal Health Clinic in Katunje, Bhaktapur."
         path="/doctors"
         label="Doctors"
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(rosterSchema) }}
-      />
+      {data.ok ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rosterSchema(liveDoctors)) }}
+        />
+      ) : null}
       <PageHero
         eyebrow="Medical team · Bhaktapur"
         title="Know who is available before you visit"
-        description="Doctor schedules can change. Confirm the current clinician and consultation time before travelling to the Katunje clinic."
+        description="This roster comes directly from the clinic booking system. Specialist availability can change, so choose a free time before travelling."
       />
       <section className="image-feature-section image-feature-section--compact">
         <div className="container image-feature image-feature--text-only">
@@ -61,53 +93,82 @@ export default function DoctorsPage() {
       </section>
       <section className="section section--tight">
         <div className="container">
-          <div className="doctor-roster">
-            <div className="doctor-roster__head" aria-hidden="true">
-              <span>Doctor</span>
-              <span>Specialty</span>
-              <span>Registration</span>
+          {data.ok ? (
+            <div className="doctor-roster">
+              <div className="doctor-roster__head" aria-hidden="true">
+                <span>Doctor</span>
+                <span>Specialty</span>
+                <span>Registration</span>
+                <span>Appointment</span>
+              </div>
+              {liveDoctors.map((doctor) => {
+                const websiteDoctor = websiteDoctorByClinicId.get(doctor.id);
+                const credentials = [doctor.qualification, websiteDoctor?.hospital]
+                  .filter(Boolean)
+                  .join(" · ");
+
+                return (
+                  <article className="doctor-card" key={doctor.id}>
+                    <div className="doctor-card__main">
+                      <h2>{doctor.name}</h2>
+                      {credentials ? (
+                        <p className="doctor-card__credentials">{credentials}</p>
+                      ) : null}
+                    </div>
+                    <div>
+                      <p className="doctor-card__specialty">{doctor.specialty}</p>
+                      {websiteDoctor?.schedule ? (
+                        <p className="doctor-card__schedule time">
+                          Usually: {websiteDoctor.schedule}
+                        </p>
+                      ) : null}
+                    </div>
+                    <p className="doctor-card__reg time">
+                      {websiteDoctor?.registration ?? "—"}
+                    </p>
+                    {bookingOpen ? (
+                      <Link
+                        className="text-link doctor-card__book"
+                        href={`/book?doctor=${encodeURIComponent(doctor.id)}`}
+                      >
+                        Request time <ArrowRight size={16} />
+                      </Link>
+                    ) : (
+                      <span className="doctor-card__paused">Booking paused</span>
+                    )}
+                  </article>
+                );
+              })}
             </div>
-            {doctors.map((doctor) => (
-              <article className="doctor-card" key={doctor.registration}>
-                <div className="doctor-card__main">
-                  <h2>{doctor.name}</h2>
-                  <p className="doctor-card__credentials">
-                    {doctor.credentials} · {doctor.hospital}
-                  </p>
-                </div>
-                <p className="doctor-card__specialty">{doctor.specialty}</p>
-                <p className="doctor-card__reg time">{doctor.registration}</p>
-              </article>
-            ))}
-          </div>
+          ) : (
+            <div className="doctor-roster__notice" role="status">
+              <h2>Current doctor information is unavailable just now</h2>
+              <p>
+                Please phone the clinic to confirm today’s doctor availability
+                before travelling.
+              </p>
+            </div>
+          )}
         </div>
       </section>
       <section className="section section--tint">
         <div className="container content-grid">
           <div>
             <span className="kicker">Patient trust</span>
-            <h2>Doctor profiles should contain facts, not marketing claims</h2>
+            <h2>Current roster information from the clinic</h2>
           </div>
           <div>
             <p>
-              Each published profile should include the doctor’s full name,
-              qualification, specialty, Nepal Medical Council registration
-              number and current schedule. These details must be verified before
-              they appear on the website.
+              Names, qualifications and specialties above are supplied by the
+              clinic’s booking system. Website-only registration and hospital
+              details are shown only where the clinic has verified a matching
+              doctor record.
             </p>
-            <Link className="button" href="/contact">
-              Confirm today’s schedule <ArrowRight size={16} />
+            <Link className="button" href={bookingOpen ? "/book" : "/contact"}>
+              {bookingOpen ? "Book an appointment" : "Contact the clinic"}
+              <ArrowRight size={16} />
             </Link>
           </div>
-        </div>
-      </section>
-      <section className="section">
-        <div className="container editorial-callout">
-          <span>Planning a visit?</span>
-          <h2>Tell the clinic which type of doctor you need</h2>
-          <Link className="button" href="/clinic-services">
-            Review clinic services <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
       <ContactBand />
